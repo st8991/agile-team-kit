@@ -68,3 +68,4 @@ The team's skills are in `.claude/skills/` (registry: `team/SKILLS.md`). Where a
 - `investigate-first`: when a failure is ambiguous or intermittent, before you edit anything.
 - `mcp-builder`: when the design note says the ticket builds an MCP server.
 - `design-taste-frontend`: when the ticket is a public-facing web page and the UX spec asks for it.
+- `property-based-testing`: when the design note or data spec names a property (roundtrip, invariant, oracle), or you are writing a parser, serializer or calculation and the project already has a PBT library.
