@@ -15,6 +15,8 @@ team/                     The team's shared memory — lives in git
   product-sync/           ← YOU answer the Monday product sync here
   reviews/  retros/  sprints/  ux/  data/  security/
   DAILY_PROMPT.md         the text of the daily scheduled task
+  SKILLS.md               registry of team skills (source, pin, license, roles)
+  SKILL_RESEARCH_PROMPT.md  the text of the weekly skill-research task
 ```
 If the repo already has a CLAUDE.md, merge this one in rather than overwriting.
 

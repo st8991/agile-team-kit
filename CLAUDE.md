@@ -52,6 +52,19 @@ asking you. Example:
 - Leave code you touch a little cleaner, but never refactor outside the ticket's scope;
   log it in team/FINDINGS.md instead.
 
+## Team skills
+
+Skills live in `.claude/skills/`. Most are copied from community repos at a fixed
+commit; see `team/SKILLS.md` for each skill's source, license, the roles that use
+it, and the changes we made. Each agent preloads its own skills (the `skills:` list
+in its frontmatter) and can load the on-demand ones named in its prompt.
+- Where a skill conflicts with this file or with team/TEAM.md, **this repo's rules
+  win**.
+- Interactive skills (`grill-with-docs`, `grilling`) are only for live sessions
+  with the owner, never the unattended daily run.
+- Never add or update a vendored skill except through the weekly skill-research
+  routine (`team/SKILL_RESEARCH_PROMPT.md`) and an owner-merged PR.
+
 ## How work happens here
 
 This repo is built by an autonomous agile team that runs every morning. The process,
