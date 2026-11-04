@@ -25,6 +25,14 @@ design review, building, code review, QA, merging to `develop`, retros.
 
 Specialists only run on tickets the tech lead flags, so they cost nothing otherwise.
 
+## Skills (`.claude/skills/`)
+
+Each agent preloads a small set of skills, copied from community repos at a fixed commit
+(addyosmani, mattpocock, superpowers, anthropics and others) plus our own rewrites.
+`team/SKILLS.md` lists every skill's source, license, roles and adaptations. A weekly
+scheduled task (`team/SKILL_RESEARCH_PROMPT.md`) researches new skills and opens a PR
+that evolves the kit; nothing changes until you merge it.
+
 ## How it works
 
 - **Git model:** `main` is yours; nobody on the team pushes to it. The team works on

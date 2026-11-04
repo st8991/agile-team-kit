@@ -1,0 +1,85 @@
+# Team skills registry
+
+Every skill in `.claude/skills/`: where it came from, the commit it is pinned to,
+its license, the roles that use it, and what we changed. The weekly skill-research
+routine (`team/SKILL_RESEARCH_PROMPT.md`) keeps this file current. Skills change
+only through an owner-merged PR.
+
+**Adoption rules**
+1. **Vendor, don't subscribe.** Copy the skill folder at a pinned commit, keeping
+   its LICENSE/NOTICE. No auto-updating plugins or marketplaces.
+2. **Adapt rather than fight.** Where a skill clashes with CLAUDE.md or TEAM.md, add
+   an "In this repo" note under its frontmatter (marked `adapted` below) and record
+   it here. For sources with no license, write our own version instead of copying
+   (marked `own rewrite`).
+3. **One skill per topic per role.** No agent gets two TDD skills or two debugging
+   skills.
+4. **Assign deliberately.** Preload small skills an agent needs on every task.
+   Make large or occasional ones on-demand, through the Skill tool and the agent's
+   `## Skills` section.
+5. **Security review.** security-engineer reviews every added or re-pinned skill
+   (prompt injection, permission or git-rule bypass, network calls, scripts).
+
+## Sources
+
+| Source | Pinned commit | License |
+|---|---|---|
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 301b02b | MIT |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | 4ae2317 | MIT |
+| [anthropics/skills](https://github.com/anthropics/skills) | ca45fc4 | Apache-2.0 (per skill LICENSE.txt) |
+| [obra/superpowers](https://github.com/obra/superpowers) | 22f0b46 | MIT |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 96608e0 | MIT |
+| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | 2e068f7 | Apache-2.0 (NOTICE kept) |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | dd9a1b4 | MIT |
+| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 12af471 | MIT |
+| [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | 2c60614 | none declared, so ideas only |
+
+## Skills
+
+| Skill | Source | Roles (P = preloaded, D = on demand) | Changes | Reviewed |
+|---|---|---|---|---|
+| team-coding-principles | own, inspired by karpathy | developer P, code-reviewer P, tech-lead P, product-manager P | own rewrite | 2026-11-04 |
+| spec-driven-development | addyosmani | product-manager P | vendored | 2026-11-04 |
+| planning-and-task-breakdown | addyosmani | project-manager P | shared reference copied in | 2026-11-04 |
+| test-driven-development | addyosmani | developer P | shared reference copied in | 2026-11-04 |
+| code-review-and-quality | addyosmani | code-reviewer P | shared references copied in | 2026-11-04 |
+| security-and-hardening | addyosmani | security-engineer P | shared reference copied in | 2026-11-04 |
+| documentation-and-adrs | addyosmani | tech-lead P | vendored | 2026-11-04 |
+| api-and-interface-design | addyosmani | tech-lead D | vendored | 2026-11-04 |
+| browser-testing-with-devtools | addyosmani | qa-engineer D | vendored | 2026-11-04 |
+| ci-cd-and-automation | addyosmani | integrator D | vendored | 2026-11-04 |
+| to-tickets | mattpocock | product-manager P | adapted: tracker is BACKLOG.md | 2026-11-04 |
+| to-spec | mattpocock | product-manager D | adapted: tracker is BACKLOG.md | 2026-11-04 |
+| grill-with-docs | mattpocock | product-manager D (live sync only) | adapted: live sessions only | 2026-11-04 |
+| grilling | mattpocock | needed by grill-with-docs | adapted: live sessions only | 2026-11-04 |
+| domain-modeling | mattpocock | tech-lead P | adapted: ADRs and glossary in DECISIONS.md | 2026-11-04 |
+| improve-codebase-architecture | mattpocock | tech-lead D | vendored | 2026-11-04 |
+| retro | mattpocock | project-manager D | adapted: whole-team day-5 retro | 2026-11-04 |
+| diagnosing-bugs | mattpocock | qa-engineer D | vendored | 2026-11-04 |
+| skill-creator | anthropics | weekly skill-research run | adapted note | 2026-11-04 |
+| webapp-testing | anthropics | qa-engineer D | vendored | 2026-11-04 |
+| mcp-builder | anthropics | developer D | vendored | 2026-11-04 |
+| verification-before-completion | superpowers | developer P, qa-engineer P, integrator P | vendored | 2026-11-04 |
+| systematic-debugging | superpowers | developer D | vendored | 2026-11-04 |
+| receiving-code-review | superpowers | developer P | vendored | 2026-11-04 |
+| writing-skills | superpowers | weekly skill-research run | adapted note | 2026-11-04 |
+| ponytail | ponytail | developer P, tech-lead D | adapted: lite level, CLAUDE.md comment rules win | 2026-11-04 |
+| ponytail-review | ponytail | code-reviewer P | adapted: reviewer's verdict format | 2026-11-04 |
+| verify-and-stop | caveman | qa-engineer P | vendored (trial) | 2026-11-04 |
+| investigate-first | caveman | developer D | vendored (trial) | 2026-11-04 |
+| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: repo-root paths, output to UX.md | 2026-11-04 |
+| design-taste-frontend | taste-skill | ux-designer D, developer D | adapted: public pages only | 2026-11-04 |
+
+## Watching, not adopted
+
+| Repo | Why not yet | Revisit when |
+|---|---|---|
+| JuliusBrussee/caveman (CLI, proxy, Auto) | Rewires agents, sends telemetry by default, needs a vendor account | Telemetry becomes opt-in and runs without an account |
+| Graphify-Labs/graphify | Code graph pays off only on large codebases; 1.6k open issues | A product repo passes ~50k lines |
+| obra/superpowers (whole plugin) | Waits on a human, nests subagents, logo telemetry | Never as a whole; keep cherry-picking |
+| anthropics/skills docx/pdf/pptx/xlsx | Proprietary license; Claude Code has equivalents | A report needs a file format |
+
+## Gaps to research
+- data-scientist: numerical validation, golden-data and model-evaluation skills.
+- project-manager: estimation and capacity-planning skills.
+- reporter: concise status-report writing.
