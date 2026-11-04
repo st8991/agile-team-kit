@@ -79,6 +79,18 @@ only through an owner-merged PR.
 | obra/superpowers (whole plugin) | Waits on a human, nests subagents, logo telemetry | Never as a whole; keep cherry-picking |
 | anthropics/skills docx/pdf/pptx/xlsx | Proprietary license; Claude Code has equivalents | A report needs a file format |
 
+## Learning log
+
+One row per weekly run, newest first. The next run reads this to learn which
+kinds of changes the owner accepts, edits or rejects.
+
+| Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
+|---|---|---|---|---|
+| 2026-11-04 | #1, #2 | Initial evaluation; 30 skills vendored + team-coding-principles | merged unedited | Owner wants the research applied to the kit, not just reported: include, cherry-pick bundles, rewrite unlicensed ideas |
+
+Feedback from projects that use the kit arrives as GitHub issues labelled
+`skill-feedback`. Requests for specific repos to look at come as `skill-request`.
+
 ## Gaps to research
 - data-scientist: numerical validation, golden-data and model-evaluation skills.
 - project-manager: estimation and capacity-planning skills.
