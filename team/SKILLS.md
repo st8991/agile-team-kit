@@ -77,6 +77,14 @@ only through an owner-merged PR.
 | property-based-testing | trailofbits | developer D, data-scientist D | adapted: library choice is tech-lead's, seeded generators | 2026-11-04 |
 | threat-modeling | own, inspired by defending-code-reference-harness | security-engineer D | own rewrite: sequential, writes team/SECURITY.md | 2026-11-04 |
 
+## Guards (hooks, not skills)
+
+| Tool | Pinned | License | What it does | Reviewed |
+|---|---|---|---|---|
+| [kenryu42/cc-safety-net](https://github.com/kenryu42/cc-safety-net) | 2.7.3, npm tarball sha512 checked by `.claude/hooks/cc-safety-net.sh` | MIT | PreToolUse hook on every tool: blocks force-push, branch and tag deletion, `git reset --hard`, `git clean`, `rm -rf` on dangerous paths, `curl \| bash`, and `.env`/SSH/credential reads. Strict level. `.cc-safety-net/rules/team-rules` adds no push to main, no `gh pr merge`, no `gh repo delete`. One built-in rule is off: `git.merge-abort`, which the integrator needs | 2026-11-05 |
+
+Upgrades follow the same rule as skills: change the version and checksum in the hook script in an owner-merged PR, after the security-engineer reads the release diff.
+
 ## Watching, not adopted
 
 | Repo | Why not yet | Revisit when |
@@ -85,12 +93,11 @@ only through an owner-merged PR.
 | Graphify-Labs/graphify | Code graph pays off only on large codebases; 1.6k open issues | A product repo passes ~50k lines |
 | obra/superpowers (whole plugin) | Waits on a human, nests subagents, logo telemetry | Never as a whole; keep cherry-picking |
 | anthropics/skills docx/pdf/pptx/xlsx | Proprietary license; Claude Code has equivalents | A report needs a file format |
-| kenryu42/cc-safety-net | Not a skill: a PreToolUse hook that parses commands and blocks force-push, branch deletion, `rm -rf` and `.env` reads. Adding it changes `.claude/settings.json`, so it is the owner's call | Owner approves the hook (see docs/skill-research/2026-11-04-security-skills.md) |
 | cloudflare/security-audit-skill | Best full-audit method seen, but full mode fans out subagents and writes to `~/security-audit-skill/`; guidance mode overlaps owasp-security | The team adds a periodic full-audit lane the scrum master orchestrates |
 | AgriciDaniel/pya | Strong read-only audit, but the orchestrator spawns 9 agents; overlaps owasp-security | Same as cloudflare; its `references/agentic-security.md` could feed our skill-review checklist |
 | trailofbits/skills (rest) | `supply-chain-risk-auditor` calls OSV, deps.dev, npm, PyPI and GitHub; `insecure-defaults`, `differential-review`, `sharp-edges`, `fp-check` overlap owasp-security or need subagents | A day-3 audit needs more than `npm audit`/`pip-audit`, or owasp-security misses a class in practice |
 | codexstar69/bug-hunter | Node 22 runtime with ~35 scripts, Context7 network lookups, writes `.bug-hunter/`; Hunter/Skeptic/Referee duplicates our review chain | Never as a whole |
-| GoPlusSecurity/agentguard | Global npm install, hooks on every tool call, optional cloud sync, Web3 focus, 1,400-line skill | cc-safety-net is declined and we still want a runtime guard |
+| GoPlusSecurity/agentguard | Global npm install, hooks on every tool call, optional cloud sync, Web3 focus, 1,400-line skill | cc-safety-net stops being maintained |
 | ghostsecurity/skills | Installs scanner binaries with `curl … \| bash` from `main`, writes to `~/.ghost/`, Task-only orchestrators, MITM proxy, vendor platform (exo) | Binaries are pinned by version and checksum |
 | tanviet12/vbsec | Prompts mostly in Vietnamese, overlaps owasp-security; optional auto-fix rewrites source and `--sca` goes online | Never; owasp-security covers it |
 
@@ -101,7 +108,8 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
-| 2026-11-04 | security round | Owner-requested review of 10 security repos: 3 skills vendored (owasp-security, agentic-actions-auditor, property-based-testing) + own threat-modeling; security-engineer preload switched to owasp-security | pending | Security tools need a behaviour check beyond the license: 4 of 10 install hooks, binaries or network calls |
+| 2026-11-05 | cc-safety-net hook | Owner chose to adopt cc-safety-net as a pinned hook | pending | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |
+| 2026-11-04 | security round (#4) | Owner-requested review of 10 security repos: 3 skills vendored (owasp-security, agentic-actions-auditor, property-based-testing) + own threat-modeling; security-engineer preload switched to owasp-security | merged unedited | Security tools need a behaviour check beyond the license: 4 of 10 install hooks, binaries or network calls |
 | 2026-11-04 | #1, #2 | Initial evaluation; 30 skills vendored + team-coding-principles | merged unedited | Owner wants the research applied to the kit, not just reported: include, cherry-pick bundles, rewrite unlicensed ideas |
 
 Feedback from projects that use the kit arrives as GitHub issues labelled

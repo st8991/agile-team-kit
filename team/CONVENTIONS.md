@@ -7,6 +7,8 @@ uses. Developers, reviewers, specialists, QA and the integrator all follow it.
 <!-- Tools the run needs and their versions, checked at every standup, e.g.
 - node 22.x, pnpm 9.x, uv 0.x, python 3.12
 - Optional: docker (needed from S-0xx), Playwright for UI review -->
+- Required by the kit's safety hook (`.claude/hooks/cc-safety-net.sh`): node 22+,
+  openssl, and npm with registry access on a machine's first run.
 
 ## Commands
 - Install: `<e.g. npm ci>`

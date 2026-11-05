@@ -20,7 +20,6 @@
       "Bash(git commit:*)",
       "Bash(git merge:*)",
       "Bash(git rebase:*)",
-      "Bash(git reset --hard origin/develop)",
       "Bash(git worktree:*)",
       "Bash(git stash:*)",
       "Bash(git rev-parse:*)",
@@ -61,8 +60,7 @@
       "Bash(uv run:*)",
       "Bash(uv lock:*)",
       "Bash(cd:*)",
-      "Bash(cat:*)",
-      "Bash(git -C:*)"
+      "Bash(cat:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",
@@ -80,7 +78,26 @@
       "Bash(rm -rf:*)",
       "Read(./.env)",
       "Read(./.env.*)",
-      "Read(./**/secrets/**)"
+      "Read(./**/secrets/**)",
+      "Edit(./.cc-safety-net/**)",
+      "Write(./.cc-safety-net/**)",
+      "Edit(./.claude/hooks/**)",
+      "Write(./.claude/hooks/**)",
+      "Edit(./.claude/settings.json)",
+      "Write(./.claude/settings.json)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/cc-safety-net.sh",
+            "timeout": 60
+          }
+        ]
+      }
     ]
   }
 }
