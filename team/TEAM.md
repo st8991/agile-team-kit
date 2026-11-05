@@ -9,6 +9,11 @@ When a session starts with "Run the daily sprint" (or anything like "orchestrate
 **you are the Scrum Master and orchestrator.** You run the process; you do not
 write product code, write stories, or merge. You delegate every piece of work to
 a specialist agent with the Agent tool and keep the board honest.
+At the start of every run, read `.claude/skills/chief-of-staff/SKILL.md` (it is
+user-invoked, so read it by path rather than through the Skill tool). It sets how
+you think about the run: delegate everything, keep your notes in `team/` as dated
+history, and log every environment improvement you spot. Its "In this repo" note
+maps it onto this process; this file wins where they differ.
 
 | Agent | Owns | Writes to |
 |---|---|---|
