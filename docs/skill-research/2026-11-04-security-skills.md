@@ -201,3 +201,12 @@ by our settings, and the adaptation note tells the agent not to work around that
   prefixes, so `git -C . push --force …` or `git -C . branch -D …` may get past
   the force-push and branch-deletion denies. Not tested live. Fixed either by
   cc-safety-net or by narrowing the `git -C` allow.
+
+## Update 2026-11-05
+Sam chose to adopt cc-safety-net. The follow-up PR runs it as a PreToolUse hook
+through `.claude/hooks/cc-safety-net.sh`, which installs version 2.7.3 once per
+machine after checking the npm tarball's sha512. It also removes the
+`Bash(git -C:*)` allow. Tested: `git -C . push --force` and `git -C . branch -D`
+are blocked by the hook's built-in rules. The team's custom rule for pushes to
+`main` does not see through `git -C` or `python -c`, so GitHub branch protection
+on `main` (team/SETUP.md step 3) stays the real backstop.

@@ -4,6 +4,8 @@
 ```
 CLAUDE.md                 Product rules + code quality standard; imports team/TEAM.md
 .claude/settings.json     Guardrails: what commands agents may and may not run
+.claude/hooks/            cc-safety-net.sh: blocks destructive git, rm -rf and secret reads before they run
+.cc-safety-net/           The hook's policy and the team's extra rules (no push to main, no PR merge)
 .claude/agents/           The team (11 specialists)
 team/                     The team's shared memory — lives in git
   TEAM.md                 Scrum master / orchestrator: the daily loop and rules
@@ -44,6 +46,12 @@ the repo root, type `Run the daily sprint` and watch. Things to tune:
 - Agents keep colliding → the tech lead's module map is too coarse; ask for a finer one.
 - A command keeps getting blocked → add it to `allow` in `.claude/settings.json`
   (e.g. your project's build tool). Never remove the `deny` entries.
+- A command is blocked "by CC Safety Net" → the safety hook judged it destructive.
+  Find a safer form (for example `git reset --keep` instead of `--hard`). If it is
+  really needed, turn that one rule off in `.cc-safety-net/policy.json` yourself;
+  agents can't edit that folder.
+- "CC Safety Net could not be installed" → the machine needs node, openssl and npm
+  registry access once. Until then shell commands are blocked; file tools still work.
 
 ## How the pieces fit
 - Chain of command is one level deep: the scrum master spawns every specialist

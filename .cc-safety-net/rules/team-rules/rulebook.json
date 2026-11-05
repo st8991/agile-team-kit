@@ -1,0 +1,43 @@
+{
+  "rulebook_version": 2,
+  "name": "team-rules",
+  "version": "1.0.0",
+  "description": "agile-team-kit hard rules from team/TEAM.md that the built-in rules don't cover: main belongs to the owner and only the owner merges PRs.",
+  "author": "agile-team-kit",
+  "allowed_commands": ["git", "gh"],
+  "rules": [
+    {
+      "name": "block-push-to-main",
+      "command": "git",
+      "match": {
+        "command_path": ["push"],
+        "any_args": ["main", "HEAD:main", "refs/heads/main", "HEAD:refs/heads/main", "develop:main", "origin/develop:main"]
+      },
+      "reason": "main belongs to the owner (team/TEAM.md). Push to develop, team-state or a ticket branch and open a PR.",
+      "intent": "hard_stop"
+    },
+    {
+      "name": "block-pr-merge",
+      "command": "gh",
+      "match": { "command_path": ["pr", "merge"] },
+      "reason": "Only the owner merges PRs into main; the integrator merges into develop with git (team/TEAM.md).",
+      "intent": "hard_stop"
+    },
+    {
+      "name": "block-repo-delete",
+      "command": "gh",
+      "match": { "command_path": ["repo", "delete"] },
+      "reason": "Deleting a repository is never part of a team run.",
+      "intent": "hard_stop"
+    }
+  ],
+  "tests": [
+    { "command": "git push origin main", "expect": "blocked", "rule": "block-push-to-main" },
+    { "command": "git push origin HEAD:main", "expect": "blocked", "rule": "block-push-to-main" },
+    { "command": "git push origin develop", "expect": "allowed" },
+    { "command": "git push -u origin feat/T-001-login", "expect": "allowed" },
+    { "command": "gh pr merge 12", "expect": "blocked", "rule": "block-pr-merge" },
+    { "command": "gh pr create --base main --head develop", "expect": "allowed" },
+    { "command": "gh repo delete owner/repo", "expect": "blocked", "rule": "block-repo-delete" }
+  ]
+}

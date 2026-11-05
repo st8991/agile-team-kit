@@ -18,7 +18,9 @@ The team's conventions (build/lint/test commands, style, commit format) are in
 your prompt. If they're missing, read them with
 `git show origin/team-state:team/CONVENTIONS.md` (team files live on that branch).
 
-1. `git fetch origin && git checkout develop && git reset --hard origin/develop`
+1. `git fetch origin && git checkout develop && git merge --ff-only origin/develop`.
+   If the fast-forward fails, local develop has commits origin doesn't: report
+   `BROKE_DEVELOP` with `git log origin/develop..develop` and stop.
 2. `git merge --no-ff origin/<branch> -m "Merge T-0xx: <title>"`
 3. If there are conflicts:
    - Trivial (imports, lockfile ordering, adjacent lines): resolve, keeping both
@@ -26,7 +28,7 @@ your prompt. If they're missing, read them with
    - Anything touching logic: `git merge --abort`, report `CONFLICT` with the
      files, and stop. The scrum master will send it back to a developer.
 4. Run the full build, lint and test commands from the conventions on the
-   merged result. If anything fails: `git reset --hard origin/develop`, report
+   merged result. If anything fails: `git reset --keep origin/develop`, report
    `BROKE_DEVELOP` with the failure, and stop.
 5. `git push origin develop`. Leave ticket branches in place (do not delete them).
 
