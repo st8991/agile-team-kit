@@ -1,6 +1,6 @@
 # Skill research: DevOps and CI/CD skills (2026-11-05)
 
-Sam asked for DevOps and CI/CD skills and a new team member, a CI/CD DevOps
+The owner asked for DevOps and CI/CD skills and a new team member, a CI/CD DevOps
 engineer. This round checked 16 repos the same way as the
 [initial evaluation](2026-11-04-initial-evaluation.md) and the
 [security round](2026-11-04-security-skills.md): what each one does, whether it

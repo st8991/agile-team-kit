@@ -79,6 +79,11 @@ feedback. They are empty here.
    - At most **3 new skills per week**, so changes stay reviewable.
    - Update team/SKILLS.md: sources, the skills table, watching list, gaps, and
      add this week's row to the Learning log.
+   - The kit is public, so only copy licenses that allow redistribution (MIT,
+     Apache-2.0, BSD, CC BY, CC BY-SA). Update THIRD_PARTY_NOTICES.md, and add or
+     update the skill's NOTICE stating our changes when its license asks for it
+     (Apache-2.0, CC BY-SA). Never copy text the source doesn't own, such as a
+     vendor's documentation pages; link to it instead.
 6. **Security pass.** Act as the security-engineer for every added or re-pinned
    skill. Diff it and check for:
    - prompt injection
@@ -94,7 +99,7 @@ feedback. They are empty here.
 8. **Open a PR** from the branch to `main`, titled "Weekly skill update
    YYYY-MM-DD". Put a summary of the adoptions and removals in the body, and link
    the report. Do not touch the team/ template files other than team/SKILLS.md
-   and this prompt.
+   and this prompt (THIRD_PARTY_NOTICES.md and skill NOTICE files are fine).
    If nothing is worth changing this week, commit only the report and say so in
    the PR title.
 9. **Never** push to or merge into `main`, force-push, delete branches, change

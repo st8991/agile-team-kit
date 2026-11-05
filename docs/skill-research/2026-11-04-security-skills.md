@@ -1,6 +1,6 @@
 # Skill research: security skills (2026-11-04)
 
-Ten security-focused skill repos Sam asked about, checked the same way as the
+Ten security-focused skill repos the owner asked about, checked the same way as the
 [initial evaluation](2026-11-04-initial-evaluation.md): what each one does, whether
 it fits an unattended team that spawns agents one level deep and keeps `main`
 owner-only, its license, and which roles would use it. Because these are security
@@ -63,9 +63,9 @@ The other six names were right.
 | Add `property-based-testing` (vendored, adapted) | developer and data-scientist on demand | Not a security skill, but the best pick in the Trail of Bits bundle for us: it fills the data-scientist "numerical validation" gap and fits CLAUDE.md's rule that calculations get checked against a reference (the "oracle" property). Adapted so that adding a PBT library is the tech lead's decision and generators are seeded |
 | `team/SKILLS.md` | — | Sources, skills table, watching list (7 new rows) and Learning log updated |
 
-This is four new skills, one over the weekly routine's cap of three, because Sam
+This is four new skills, one over the weekly routine's cap of three, because the owner
 asked for this round directly. The CLAUDE.md rule that skills change only through
-the weekly routine is honoured in spirit: nothing changes until Sam merges.
+the weekly routine is honoured in spirit: nothing changes until the owner merges.
 
 ## Repo by repo
 
@@ -203,7 +203,7 @@ by our settings, and the adaptation note tells the agent not to work around that
   cc-safety-net or by narrowing the `git -C` allow.
 
 ## Update 2026-11-05
-Sam chose to adopt cc-safety-net. The follow-up PR runs it as a PreToolUse hook
+The owner chose to adopt cc-safety-net. The follow-up PR runs it as a PreToolUse hook
 through `.claude/hooks/cc-safety-net.sh`, which installs version 2.7.3 once per
 machine after checking the npm tarball's sha512. It also removes the
 `Bash(git -C:*)` allow. Tested: `git -C . push --force` and `git -C . branch -D`

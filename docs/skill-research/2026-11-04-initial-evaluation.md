@@ -60,7 +60,7 @@ Small, opinionated, designed to be forked, and the maintainer holds a strict bar
 (see its SCOPE.md). Several skills are marked `disable-model-invocation`, so they
 only run when called by name, which is the right default for us.
 
-- `grill-me` / `grill-with-docs`: the agent interviews the owner one question at a time. Use **only in live product-sync sessions** (product-manager with Sam). Never on the unattended daily run.
+- `grill-me` / `grill-with-docs`: the agent interviews the owner one question at a time. Use **only in live product-sync sessions** (product-manager with the owner). Never on the unattended daily run.
 - `domain-modeling`: glossary + ADR discipline. Tech-lead (fits `team/DECISIONS.md`).
 - `to-tickets` / `to-spec`: break a plan into tracer-bullet tickets with blocking edges. Product-manager, after adapting the "tracker" to `team/BACKLOG.md`.
 - `diagnosing-bugs`: hard-bug loop. Developer and QA (pick this *or* superpowers' `systematic-debugging` per role, not both).
@@ -90,7 +90,7 @@ Official and well-maintained, but licensing is per skill: most are Apache-2.0, w
 `docx`, `pdf`, `pptx` and `xlsx` are proprietary ("governed by your agreement with
 Anthropic") and Claude Code already ships equivalents. Take:
 
-- `skill-creator`: authoring and evaluating our own skills. Tech-lead (and Sam).
+- `skill-creator`: authoring and evaluating our own skills. Tech-lead (and the owner).
 - `webapp-testing`: Playwright-driven checks of a running web app. QA-engineer.
 - `mcp-builder`: only if a product needs an MCP server. Developer, flagged by tech-lead.
 
@@ -203,9 +203,9 @@ A monthly routine (first Monday, before the product sync) on this repo that:
    retro/estimation skills, which nothing in this batch covers.
 3. Scores each candidate the same way as this report (fit with an unattended,
    one-level-deep team; maintenance; license; safety; role).
-4. Writes `docs/skill-research/YYYY-MM-DD.md` on a branch and opens a PR for Sam,
+4. Writes `docs/skill-research/YYYY-MM-DD.md` on a branch and opens a PR for the owner,
    plus one INBOX line so the product-manager surfaces it at the sync.
-5. Never installs or bumps a skill on its own. Adoption happens only after Sam
+5. Never installs or bumps a skill on its own. Adoption happens only after the owner
    approves, through the vendoring steps above.
 
-Nothing is scheduled yet; it needs Sam's go-ahead.
+Nothing is scheduled yet; it needs the owner's go-ahead.

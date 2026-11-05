@@ -1,0 +1,10 @@
+agentic-actions-auditor
+Original work: "agentic-actions-auditor" by Trail of Bits
+Source: https://github.com/trailofbits/skills (commit 470419e)
+License: Creative Commons Attribution-ShareAlike 4.0 International
+         (https://creativecommons.org/licenses/by-sa/4.0/; full text in LICENSE)
+
+Changes: the agile-team-kit project added the "In this repo" note under the
+frontmatter of SKILL.md (scope, local-checkout-only auditing, where findings go).
+The rest of the text is unchanged. This adaptation is licensed under
+CC BY-SA 4.0. No warranties are given.
