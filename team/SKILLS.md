@@ -58,7 +58,7 @@ only through an owner-merged PR.
 | domain-modeling | mattpocock | tech-lead P | adapted: ADRs and glossary in DECISIONS.md | 2026-11-04 |
 | improve-codebase-architecture | mattpocock | tech-lead D | vendored | 2026-11-04 |
 | retro | mattpocock | project-manager D | adapted: whole-team day-5 retro | 2026-11-04 |
-| chief-of-staff | mattpocock (`skills/in-progress/`, beta) | Scrum Master (main session), read by path at run start per TEAM.md | adapted: wiki is `team/`, no mid-run questions, retro and spec work routed to the team, improvements logged not fixed | 2026-11-05 |
+| chief-of-staff | mattpocock (`skills/in-progress/`, beta) | ceo, read by path at the start of every task (user-invoked skill) | adapted: subagent work becomes directives the Scrum Master carries out, wiki is `team/` with STRATEGY.md as index, no mid-run questions, retro and spec work routed to the team | 2026-11-05 |
 | diagnosing-bugs | mattpocock | qa-engineer D | vendored | 2026-11-04 |
 | skill-creator | anthropics | weekly skill-research run | adapted note | 2026-11-04 |
 | webapp-testing | anthropics | qa-engineer D | vendored | 2026-11-04 |
@@ -109,7 +109,7 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
-| 2026-11-05 | chief-of-staff | Owner-requested: vendored mattpocock's beta chief-of-staff for the Scrum Master at the existing 4ae2317 pin; `agents/openai.yaml` (Codex UI metadata) dropped | pending | Beta skills from `in-progress/` are fine when pinned; an orchestrator skill maps onto the Scrum Master, not an agent |
+| 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | pending | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
 | 2026-11-05 | cc-safety-net hook | Owner chose to adopt cc-safety-net as a pinned hook | pending | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |
 | 2026-11-04 | security round (#4) | Owner-requested review of 10 security repos: 3 skills vendored (owasp-security, agentic-actions-auditor, property-based-testing) + own threat-modeling; security-engineer preload switched to owasp-security | merged unedited | Security tools need a behaviour check beyond the license: 4 of 10 install hooks, binaries or network calls |
 | 2026-11-04 | #1, #2 | Initial evaluation; 30 skills vendored + team-coding-principles | merged unedited | Owner wants the research applied to the kit, not just reported: include, cherry-pick bundles, rewrite unlicensed ideas |

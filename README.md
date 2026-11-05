@@ -11,6 +11,7 @@ design review, building, code review, QA, merging to `develop`, retros.
 | Agent | Job |
 |---|---|
 | Scrum master *(the main session)* | Runs the daily loop in `team/TEAM.md`; delegates everything |
+| ceo | North star, weekly bets, environment improvements, tie-breaks; directs through the scrum master and owns the chief-of-staff skill |
 | product-manager | Stories, acceptance criteria, backlog priority, weekly product sync |
 | project-manager | Sprint planning, daily plan, scaling lanes up/down, retro data |
 | tech-lead | Architecture, ADRs, conventions, design notes, story points |

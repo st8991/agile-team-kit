@@ -9,14 +9,10 @@ When a session starts with "Run the daily sprint" (or anything like "orchestrate
 **you are the Scrum Master and orchestrator.** You run the process; you do not
 write product code, write stories, or merge. You delegate every piece of work to
 a specialist agent with the Agent tool and keep the board honest.
-At the start of every run, read `.claude/skills/chief-of-staff/SKILL.md` (it is
-user-invoked, so read it by path rather than through the Skill tool). It sets how
-you think about the run: delegate everything, keep your notes in `team/` as dated
-history, and log every environment improvement you spot. Its "In this repo" note
-maps it onto this process; this file wins where they differ.
 
 | Agent | Owns | Writes to |
 |---|---|---|
+| ceo | Where we're going: north star, weekly bets, environment improvements, tie-breaks (advises; directs through you) | team/STRATEGY.md |
 | product-manager | What to build, priority, acceptance | team/BACKLOG.md |
 | project-manager | How much, how fast, scaling, sprint | team/SPRINT.md |
 | tech-lead | Architecture, conventions, design review | team/DECISIONS.md, team/CONVENTIONS.md |
@@ -33,6 +29,7 @@ maps it onto this process; this file wins where they differ.
 
 | Layer | Agents | When |
 |---|---|---|
+| Set direction | ceo | Monday strategy review, day-5 retro, tie-breaks you ask for |
 | Shape the work | product-manager, project-manager, tech-lead | grooming, planning, design review |
 | Specialist input (flagged only) | security-engineer, ux-designer, data-scientist | grooming (UX/data criteria) and design review, in parallel with tech-lead's note |
 | Build | developer | one ticket per worktree |
@@ -42,6 +39,12 @@ maps it onto this process; this file wins where they differ.
 The tech lead's design note carries a `Specialists:` line (`security`, `ux`,
 `data`, or `none`) using the triggers in tech-lead.md. Only flagged specialists
 are spawned for that ticket. Unflagged tickets cost nothing extra.
+
+**CEO directives.** The ceo cannot spawn agents. Its report ends with a
+`Directives:` list (role, task, file pointers). Carry out each one by spawning that
+role, as long as it fits this file: a directive never skips a gate, never touches
+`main`, and never changes `.claude/` or CLAUDE.md (those become "Needs you"). Copy
+its "Needs you" items into the day's report and checkpoint `team/STRATEGY.md`.
 
 You (Scrum Master) own `team/STANDUPS.md` and the board's status columns in
 `team/SPRINT.md`. Spawn agents directly from this session; agents do not spawn
@@ -132,6 +135,9 @@ the committed tickets. Every run: spawn **project-manager** for today's plan
    After each round, send results to **project-manager** and follow its
    SCALE_UP / SCALE_DOWN / RETRY / STOP. Three failed attempts on a ticket →
    **Blocked** with the reason; move on.
+   - **Tie-breaks:** when two roles disagree and neither TEAM.md nor the owner's
+     files settle it, or a ticket goes Blocked, spawn **ceo** for a tie-break
+     (once per issue). Owner-level decisions still go to "Needs you".
 
 **Definition of Ready** (a story may enter a sprint only when all hold): clear
 user value; testable acceptance criteria; out-of-scope stated; pointed 1–5 by
@@ -148,7 +154,9 @@ Final checkpoint. On sprint day 5, project-manager also writes the retro.
 
 ## Weekly product sync (the owner's meeting with the product manager)
 Every **Monday** (in the owner's time zone, set in `team/PRODUCT.md`), on that day's daily run, right after the
-standup: spawn **product-manager** to write `team/product-sync/YYYY-MM-DD.md`
+standup: first spawn **ceo** for the weekly strategy review (it updates
+`team/STRATEGY.md`); carry out its directives, then spawn **product-manager**,
+with the CEO's north star and bets, to write `team/product-sync/YYYY-MM-DD.md`
 (template in `team/product-sync/README.md`). It covers what was completed since
 the last sync, what is in progress, roadmap status by epic, the recommended
 **next story, next feature and next epic** (each with an alternative and the
@@ -202,7 +210,7 @@ A sprint is 5 daily runs. On top of the daily loop:
 | Day | Ceremony | Who | Output |
 |---|---|---|---|
 | 1 | Sprint planning | project-manager → tech-lead design review | Committed stories, board, sprint goal |
-| Every Monday | **Weekly product sync** | product-manager → owner | `team/product-sync/YYYY-MM-DD.md`; owner decisions applied next run |
+| Every Monday | **Strategy review**, then **weekly product sync** | ceo → product-manager → owner | `team/product-sync/YYYY-MM-DD.md`; owner decisions applied next run |
 | 3 | **Backlog refinement** | product-manager grooms (+ ux-designer / data-scientist criteria) → **estimation round**; security-engineer runs the dependency audit | Next sprint's stories Ready; audit logged in team/SECURITY.md |
 | 5 | **Sprint review (demo)** | qa-engineer + product-manager (+ ux-designer walks the UI stories) → reporter | `team/reviews/sprint-NN.md` |
 | 5 | **Retrospective** | project-manager, from data | Retro + proposed process changes |
@@ -238,7 +246,8 @@ answers to the sprint review are added there.
    review/QA rejections per ticket and reasons, merge conflicts, broken-develop
    events, blocked tickets, re-pointed stories, clarification requests,
    findings logged, and how each run ended (finished / stopped / cut off).
-2. **Every role speaks.** Spawn in parallel **product-manager, project-manager,
+2. **Every role speaks.** Spawn **ceo** first (bets and improvements from
+   `team/STRATEGY.md`, plus its lint of that file), then in parallel **product-manager, project-manager,
    tech-lead, developer, code-reviewer, security-engineer, ux-designer,
    data-scientist, qa-engineer, integrator, reporter**, each
    given the data, all sprint notes, and last sprint's action items, and asked:
