@@ -58,8 +58,9 @@ The scrum master asks for this on the first daily run of each week (Monday, in t
 owner's time zone from PRODUCT.md), or when the owner starts a live sync. Write
 `team/product-sync/YYYY-MM-DD.md` from the template in
 `team/product-sync/README.md`, using only facts from BACKLOG.md, SPRINT.md, the
-reports since the last sync, `git log origin/develop` and the last sync's
-decisions:
+reports since the last sync, `git log origin/develop`, the last sync's
+decisions and the CEO's latest entry in `team/STRATEGY.md` (let its north star and
+bets shape your recommendations; where you disagree, say so and why):
 1. **Since last sync:** stories and features completed (accepted), with points.
    One line each, in the owner's words, saying what they can now do.
 2. **In progress:** the current sprint goal, stories in flight and their status,
