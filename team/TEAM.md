@@ -24,6 +24,7 @@ a specialist agent with the Agent tool and keep the board honest.
 | security-engineer | Threat review + security gate on flagged tickets; dependency audit | team/SECURITY.md |
 | ux-designer | UX criteria, UI specs + UX/accessibility gate on flagged tickets | team/UX.md, team/ux/ |
 | data-scientist | Formula/model specs + numerical-correctness gate on flagged tickets | team/DATA.md, team/data/ |
+| devops-engineer | CI/CD: builds CI, Dockerfile and deploy tickets; pipeline gate on flagged tickets; red-CI triage; CI health review | team/DEVOPS.md, its ticket branches |
 
 **Layers** (all agents are still spawned by you, one level deep):
 
@@ -31,14 +32,20 @@ a specialist agent with the Agent tool and keep the board honest.
 |---|---|---|
 | Set direction | ceo | Monday strategy review, day-5 retro, tie-breaks you ask for |
 | Shape the work | product-manager, project-manager, tech-lead | grooming, planning, design review |
-| Specialist input (flagged only) | security-engineer, ux-designer, data-scientist | grooming (UX/data criteria) and design review, in parallel with tech-lead's note |
-| Build | developer | one ticket per worktree |
+| Specialist input (flagged only) | security-engineer, ux-designer, data-scientist, devops-engineer | grooming (UX/data criteria) and design review, in parallel with tech-lead's note |
+| Build | developer, or devops-engineer for `Builder: devops-engineer` tickets | one ticket per worktree |
 | Quality gates | code-reviewer → flagged specialists (parallel) → qa-engineer | after DONE, in that order |
 | Release & report | integrator, reporter | merge, PR, daily report |
 
 The tech lead's design note carries a `Specialists:` line (`security`, `ux`,
-`data`, or `none`) using the triggers in tech-lead.md. Only flagged specialists
-are spawned for that ticket. Unflagged tickets cost nothing extra.
+`data`, `devops`, or `none`) using the triggers in tech-lead.md. Only flagged
+specialists are spawned for that ticket. Unflagged tickets cost nothing extra.
+It also carries a `Builder:` line. Tickets whose main change is CI workflows,
+Dockerfiles, build/release tooling or deploy config say `Builder: devops-engineer`
+(developers may not change CI config); wherever the loop below says "developer",
+use the ticket's builder. A devops-built ticket is always flagged `security`,
+and the devops-engineer never reviews its own branch: code-reviewer and
+security-engineer gate it.
 
 **CEO directives.** The ceo cannot spawn agents. Its report ends with a
 `Directives:` list (role, task, file pointers). Carry out each one by spawning that
@@ -49,7 +56,7 @@ its "Needs you" items into the day's report and checkpoint `team/STRATEGY.md`.
 You (Scrum Master) own `team/STANDUPS.md` and the board's status columns in
 `team/SPRINT.md`. Spawn agents directly from this session; agents do not spawn
 other agents. Paste the current `team/CONVENTIONS.md` into every developer,
-code-reviewer, specialist, qa-engineer and integrator prompt (ticket branches are cut from
+devops-engineer, code-reviewer, specialist, qa-engineer and integrator prompt (ticket branches are cut from
 `develop`, which may not have the latest team files yet). That keeps the chain
 of command one level deep and reliable.
 
@@ -74,6 +81,10 @@ definitions on `team-state` are current.
 under "Environment" in `team/CONVENTIONS.md`, plus `gh auth status` and
 `git config user.name` (empty = pass the identity per command). A missing
 required tool or `gh` logged out stops build work until fixed.
+**CI check.** If `gh run list --branch develop --limit 5` shows the latest run on
+develop red, spawn **devops-engineer** to triage it (`diagnose-ci-gate`) before
+the build loop, and put its fix ticket first in today's plan. (`gh run` needs the
+allow rules listed in `team/SETUP.md`; without them, skip this check and say so.)
 Read `team/SPRINT.md`. Any ticket marked
 In Progress / Review / QA from a previous run that was cut off: check whether its
 branch exists and how far it got, and resume it from that stage rather than
@@ -110,6 +121,7 @@ the committed tickets. Every run: spawn **project-manager** for today's plan
    2. Spawn **developer** (`isolation: "worktree"`) with: the ticket and its
       story's acceptance criteria, the tech lead's approach and file list, the
       specialists' design input, and any previous review/specialist/QA feedback. Lanes in the same round run in parallel.
+      For `Builder: devops-engineer` tickets, spawn **devops-engineer** the same way.
    3. DONE → **Review**: spawn **code-reviewer**. REQUEST_CHANGES → back to
       developer with the comments. ESCALATE → spawn tech-lead, then developer.
    4. APPROVE → **Specialist review** (only if flagged): spawn the flagged
@@ -121,7 +133,9 @@ the committed tickets. Every run: spawn **project-manager** for today's plan
    5. All APPROVE → **QA**: spawn **qa-engineer**. FAIL → back to developer with
       the report.
    6. PASS → spawn **integrator** with the branch, head sha, every APPROVE and PASS.
-      CONFLICT or BROKE_DEVELOP → back to developer to rebase on develop and fix.
+      CONFLICT or BROKE_DEVELOP `bug` → back to the builder to rebase on develop
+      and fix. BROKE_DEVELOP `flaky`, `environment` or `pipeline` → spawn
+      **devops-engineer** to triage; its fix ticket goes first in the lane.
    7. MERGED → spawn **product-manager** to accept the story once all its
       tickets are merged. ACCEPT → **Done**. REJECT → new ticket with the reason.
    8. **Checkpoint** (board, standup note, commit) after every ticket.
@@ -211,13 +225,13 @@ A sprint is 5 daily runs. On top of the daily loop:
 |---|---|---|---|
 | 1 | Sprint planning | project-manager → tech-lead design review | Committed stories, board, sprint goal |
 | Every Monday | **Strategy review**, then **weekly product sync** | ceo → product-manager → owner | `team/product-sync/YYYY-MM-DD.md`; owner decisions applied next run |
-| 3 | **Backlog refinement** | product-manager grooms (+ ux-designer / data-scientist criteria) → **estimation round**; security-engineer runs the dependency audit | Next sprint's stories Ready; audit logged in team/SECURITY.md |
+| 3 | **Backlog refinement** | product-manager grooms (+ ux-designer / data-scientist criteria) → **estimation round**; security-engineer runs the dependency audit; devops-engineer runs the CI health review | Next sprint's stories Ready; audit logged in team/SECURITY.md, CI health in team/DEVOPS.md |
 | 5 | **Sprint review (demo)** | qa-engineer + product-manager (+ ux-designer walks the UI stories) → reporter | `team/reviews/sprint-NN.md` |
 | 5 | **Retrospective** | project-manager, from data | Retro + proposed process changes |
 
 **Estimation round (story pointing).** For each `Needs-points` story, spawn
 **tech-lead**, **developer** and **qa-engineer** in parallel, plus any specialist
-the story clearly needs (security, ux, data), each asked only:
+the story clearly needs (security, ux, data, devops), each asked only:
 "Estimate this story in Fibonacci points (1, 2, 3, 5, 8) relative to the anchors
 in tech-lead.md, with one line of reasoning. Don't write code." Then:
 - all within one step (e.g. 3 and 5) → tech-lead records the highest value;
@@ -248,8 +262,8 @@ answers to the sprint review are added there.
    findings logged, and how each run ended (finished / stopped / cut off).
 2. **Every role speaks.** Spawn **ceo** first (bets and improvements from
    `team/STRATEGY.md`, plus its lint of that file), then in parallel **product-manager, project-manager,
-   tech-lead, developer, code-reviewer, security-engineer, ux-designer,
-   data-scientist, qa-engineer, integrator, reporter**, each
+   tech-lead, developer, devops-engineer, code-reviewer, security-engineer,
+   ux-designer, data-scientist, qa-engineer, integrator, reporter**, each
    given the data, all sprint notes, and last sprint's action items, and asked:
    "From your role's point of view: what should we keep, stop, and try? Max 5
    bullets, each tied to a note ID or data point." Add your own scrum-master view.

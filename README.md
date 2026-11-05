@@ -23,6 +23,7 @@ design review, building, code review, QA, merging to `develop`, retros.
 | security-engineer | Threat review + security gate on flagged tickets; dependency audits |
 | ux-designer | UX criteria, UI specs + UX/accessibility gate on flagged tickets |
 | data-scientist | Formula/model specs + numerical-correctness gate on flagged tickets |
+| devops-engineer | Builds CI/CD, Dockerfile and deploy tickets; pipeline gate on flagged tickets; triages red CI; day-3 CI health review |
 
 Specialists only run on tickets the tech lead flags, so they cost nothing otherwise.
 

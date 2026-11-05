@@ -36,6 +36,7 @@ only through an owner-merged PR.
 | [agamm/claude-code-owasp](https://github.com/agamm/claude-code-owasp) | 1ae29cb | MIT |
 | [trailofbits/skills](https://github.com/trailofbits/skills) | 470419e | CC-BY-SA-4.0 (adaptations stay CC-BY-SA; LICENSE kept per skill) |
 | [anthropics/defending-code-reference-harness](https://github.com/anthropics/defending-code-reference-harness) | d3bea6b | Apache-2.0, ideas only (repo unmaintained) |
+| [github/awesome-copilot](https://github.com/github/awesome-copilot) | 9654314 | MIT (repo LICENSE copied into each skill) |
 
 ## Skills
 
@@ -50,7 +51,7 @@ only through an owner-merged PR.
 | documentation-and-adrs | addyosmani | tech-lead P | vendored | 2026-11-04 |
 | api-and-interface-design | addyosmani | tech-lead D | vendored | 2026-11-04 |
 | browser-testing-with-devtools | addyosmani | qa-engineer D | vendored | 2026-11-04 |
-| ci-cd-and-automation | addyosmani | integrator D | vendored | 2026-11-04 |
+| ci-cd-and-automation | addyosmani | devops-engineer P (was integrator D until 2026-11-05) | vendored | 2026-11-04 |
 | to-tickets | mattpocock | product-manager P | adapted: tracker is BACKLOG.md | 2026-11-04 |
 | to-spec | mattpocock | product-manager D | adapted: tracker is BACKLOG.md | 2026-11-04 |
 | grill-with-docs | mattpocock | product-manager D (live sync only) | adapted: live sessions only | 2026-11-04 |
@@ -63,7 +64,7 @@ only through an owner-merged PR.
 | skill-creator | anthropics | weekly skill-research run | adapted note | 2026-11-04 |
 | webapp-testing | anthropics | qa-engineer D | vendored | 2026-11-04 |
 | mcp-builder | anthropics | developer D | vendored | 2026-11-04 |
-| verification-before-completion | superpowers | developer P, qa-engineer P, integrator P | vendored | 2026-11-04 |
+| verification-before-completion | superpowers | developer P, qa-engineer P, integrator P, devops-engineer P | vendored | 2026-11-04 |
 | systematic-debugging | superpowers | developer D | vendored | 2026-11-04 |
 | receiving-code-review | superpowers | developer P | vendored | 2026-11-04 |
 | writing-skills | superpowers | weekly skill-research run | adapted note | 2026-11-04 |
@@ -77,6 +78,11 @@ only through an owner-merged PR.
 | agentic-actions-auditor | trailofbits | security-engineer D | adapted: local checkout only (`gh api` denied) | 2026-11-04 |
 | property-based-testing | trailofbits | developer D, data-scientist D | adapted: library choice is tech-lead's, seeded generators | 2026-11-04 |
 | threat-modeling | own, inspired by defending-code-reference-harness | security-engineer D | own rewrite: sequential, writes team/SECURITY.md | 2026-11-04 |
+| github-actions-hardening | awesome-copilot | devops-engineer P, security-engineer D | adapted: SHA pins required, findings in the role's own verdict, AI actions still go to agentic-actions-auditor | 2026-11-05 |
+| diagnose-ci-gate | awesome-copilot | devops-engineer D, integrator D | adapted: base branch is develop, no test quarantine (hard rule), scratchpad worktree, works without `gh run` | 2026-11-05 |
+| github-actions-efficiency | awesome-copilot | devops-engineer D | adapted: required checks never dropped, output to team/DEVOPS.md and Findings | 2026-11-05 |
+| multi-stage-dockerfile | awesome-copilot | devops-engineer D | adapted: digest-pinned base images, container runtime needs an ADR | 2026-11-05 |
+| shipping-and-launch | addyosmani | devops-engineer D | adapted: production is always owner-approved, TEAM.md DoD wins; shared references copied in | 2026-11-05 |
 
 ## Guards (hooks, not skills)
 
@@ -100,6 +106,15 @@ Upgrades follow the same rule as skills: change the version and checksum in the 
 | codexstar69/bug-hunter | Node 22 runtime with ~35 scripts, Context7 network lookups, writes `.bug-hunter/`; Hunter/Skeptic/Referee duplicates our review chain | Never as a whole |
 | GoPlusSecurity/agentguard | Global npm install, hooks on every tool call, optional cloud sync, Web3 focus, 1,400-line skill | cc-safety-net stops being maintained |
 | ghostsecurity/skills | Installs scanner binaries with `curl … \| bash` from `main`, writes to `~/.ghost/`, Task-only orchestrators, MITM proxy, vendor platform (exo) | Binaries are pinned by version and checksum |
+| akin-ozer/cc-devops-skills | 31 generator/validator pairs (Actions, Dockerfile, Helm, Terraform…), but the validators' `install_tools.sh` runs `curl … \| bash` from `master` for act and actionlint | Validators install pinned binaries by checksum |
+| wshobson/agents (cicd-automation, kubernetes-operations, incident-response) | Clear MIT patterns, but the Actions templates pin by tag (`@v4`), which github-actions-hardening flags; deploy/k8s/incident skills need a deployed service | The product deploys to Kubernetes or runs on-call |
+| nitinjain999/platform-skills | Good zizmor/actionlint/renovate coverage (Apache-2.0), but every command opens with an interactive wizard, and it's 71 stars | Non-interactive modes become the default |
+| selvarajmurugesan90/ops-engineering-skills | 297 broad DevOps skills (Apache-2.0); pipeline triage recommends quarantining flaky tests, which TEAM.md forbids; 43 stars | Never as a whole |
+| antonbabenko/terraform-skill, LukasNiessen/terrashark, hashicorp/agent-skills | Strongest Terraform options (Apache-2.0 / MIT / MPL-2.0); the kit has no IaC yet | A tech-lead ADR adds Terraform or OpenTofu: start with antonbabenko |
+| github/awesome-copilot dependabot, secret-scanning | Accurate, but 450+ lines and tied to GitHub Advanced Security and Copilot plugins | The owner enables Dependabot or GHAS on a product repo |
+| mattpocock setup-pre-commit | Husky + Prettier only (Node), installs packages | A tech-lead ADR picks a Node stack and wants commit hooks |
+| addyosmani git-workflow-and-versioning, observability-and-instrumentation | Trunk-based advice conflicts with the develop/main model; observability needs a running service | Observability: the product has a deployed service |
+| ahmedasmar/devops-claude-skills, harness/harness-skills, microsoft/skills | No license (ahmedasmar); vendor platforms (Harness, Azure) | Never, unless the product adopts that platform |
 | tanviet12/vbsec | Prompts mostly in Vietnamese, overlaps owasp-security; optional auto-fix rewrites source and `--sca` goes online | Never; owasp-security covers it |
 
 ## Learning log
@@ -109,6 +124,7 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
+| 2026-11-05 | devops round | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | pending | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |
 | 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | pending | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
 | 2026-11-05 | cc-safety-net hook | Owner chose to adopt cc-safety-net as a pinned hook | pending | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |
 | 2026-11-04 | security round (#4) | Owner-requested review of 10 security repos: 3 skills vendored (owasp-security, agentic-actions-auditor, property-based-testing) + own threat-modeling; security-engineer preload switched to owasp-security | merged unedited | Security tools need a behaviour check beyond the license: 4 of 10 install hooks, binaries or network calls |
@@ -121,3 +137,4 @@ Feedback from projects that use the kit arrives as GitHub issues labelled
 - data-scientist: golden-data and model-evaluation skills (property-based-testing now covers part of numerical validation).
 - project-manager: estimation and capacity-planning skills.
 - reporter: concise status-report writing.
+- devops-engineer: a non-interactive workflow linter skill (actionlint + zizmor at pinned versions) once a validator installs by checksum.

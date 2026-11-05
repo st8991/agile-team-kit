@@ -6,13 +6,13 @@ CLAUDE.md                 Product rules + code quality standard; imports team/TE
 .claude/settings.json     Guardrails: what commands agents may and may not run
 .claude/hooks/            cc-safety-net.sh: blocks destructive git, rm -rf and secret reads before they run
 .cc-safety-net/           The hook's policy and the team's extra rules (no push to main, no PR merge)
-.claude/agents/           The team (11 specialists)
+.claude/agents/           The team (13 agents; the scrum master is the main session)
 team/                     The team's shared memory — lives in git
   TEAM.md                 Scrum master / orchestrator: the daily loop and rules
   PRODUCT.md              ← YOU write the vision here
   INBOX.md                ← YOU talk to the team here
   BACKLOG.md  SPRINT.md  DECISIONS.md  CONVENTIONS.md  STANDUPS.md  FINDINGS.md
-  SECURITY.md  UX.md  DATA.md          specialists' notes
+  SECURITY.md  UX.md  DATA.md  DEVOPS.md   specialists' notes
   reports/                ← YOU read one report a day here
   product-sync/           ← YOU answer the Monday product sync here
   reviews/  retros/  sprints/  ux/  data/  security/
@@ -31,6 +31,10 @@ If the repo already has a CLAUDE.md, merge this one in rather than overwriting.
    agent misbehaves, it can't land code on main without you.
 4. Create the daily scheduled task (Claude can do this for you), pointing at
    the repo and using the text in `team/DAILY_PROMPT.md`.
+5. Optional, for the devops-engineer's CI checks: add these read-only rules to
+   the `allow` list in `.claude/settings.json` (agents can't edit that file):
+   `"Bash(gh run list:*)"`, `"Bash(gh run view:*)"`, `"Bash(gh pr checks:*)"`.
+   Without them the team triages CI from local builds only.
 
 ## Your daily routine (about 10 minutes)
 1. Open the newest file in `team/reports/`. Read "Needs you" first.

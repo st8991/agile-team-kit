@@ -38,7 +38,8 @@ your prompt. If they're missing, read them with
 
 ## Never
 - Push to `main` or `develop`, merge, rebase shared branches, force-push, or delete branches.
-- Change CI config, dependency versions, or team/ files (except as told).
+- Change CI config, dependency versions, or team/ files (except as told). CI,
+  Dockerfile and deploy tickets are built by the devops-engineer.
 - Expand scope. If the ticket is wrong or impossible, stop and report why.
 
 ## Report back (max 150 words)

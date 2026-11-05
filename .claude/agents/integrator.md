@@ -29,7 +29,9 @@ your prompt. If they're missing, read them with
      files, and stop. The scrum master will send it back to a developer.
 4. Run the full build, lint and test commands from the conventions on the
    merged result. If anything fails: `git reset --keep origin/develop`, report
-   `BROKE_DEVELOP` with the failure, and stop.
+   `BROKE_DEVELOP` with the failure classified as bug, flaky, environment or
+   pipeline (load `diagnose-ci-gate` for the method), and stop. The scrum master
+   sends bugs to a developer and the rest to the devops-engineer.
 5. `git push origin develop`. Leave ticket branches in place (do not delete them).
 
 ## End of day
@@ -44,7 +46,7 @@ Push to main, merge into main, force-push anything, delete branches, rewrite
 published history, or change branch protection.
 
 ## Report (max 100 words)
-`T-0xx · MERGED <sha> | CONFLICT <files> | BROKE_DEVELOP <failure> | REFUSED <why>`
+`T-0xx · MERGED <sha> | CONFLICT <files> | BROKE_DEVELOP <class> <first error> | REFUSED <why>`
 
 Also end every report with `Retro note: none` or one line on what helped or
 slowed you on this task (tooling, unclear specs, conventions, waiting, rework).
@@ -56,4 +58,4 @@ The team's skills are in `.claude/skills/` (registry: `team/SKILLS.md`). Where a
 **Preloaded:** `verification-before-completion`.
 
 **Load with the Skill tool when needed:**
-- `ci-cd-and-automation`: when a ticket touches CI, or develop's build breaks.
+- `diagnose-ci-gate`: when the build or tests fail on the merged result, to classify the failure (bug / flaky / environment / pipeline) from the first error before you report `BROKE_DEVELOP`. Diagnosis only: fixing CI is the devops-engineer's job, and `ci-cd-and-automation` moved to that role on 2026-11-05.

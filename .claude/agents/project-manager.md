@@ -35,7 +35,7 @@ Points remaining in sprint: N of M   Ideal remaining today: N
 Tickets today (in order): T-.., T-..
 Parallel lanes: N          # developers working at once; default 2, max 3
 Dependencies: T-a before T-b
-Models: developer=sonnet, reviewer=sonnet, specialists=sonnet, qa=sonnet   # opus only for hard tickets, say why
+Models: developer=sonnet, devops=sonnet, reviewer=sonnet, specialists=sonnet, qa=sonnet   # opus only for hard tickets, say why
 Checkpoint: after every ticket
 Stop conditions: board empty | 3 failed attempts on one ticket | blocking owner question
 ```

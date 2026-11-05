@@ -31,7 +31,8 @@ Touches: <files/modules expected to change>
 Approach: <2-4 lines>
 Risks: <or none>
 Parallel-safe with: <ticket ids, or none>
-Specialists: <security | ux | data, comma-separated, or none>
+Specialists: <security | ux | data | devops, comma-separated, or none>
+Builder: <developer | devops-engineer>
 ```
 Flag a specialist only when its trigger applies (keep the team small):
 - **security**: a new or changed API endpoint, file upload/parsing, file
@@ -42,6 +43,13 @@ Flag a specialist only when its trigger applies (keep the team small):
 - **data**: anything that produces or changes a number: formulas and default
   assumptions, thresholds and scoring, unit normalization, golden or fixture
   data, pipelines, ML models and evaluations.
+- **devops**: anything that changes how code is built, tested, packaged or
+  deployed: build/test/lint scripts, a new runtime, tool or service, env vars
+  the pipeline must provide, Dockerfiles, CI workflows, release or deploy steps.
+`Builder: devops-engineer` when the ticket's main change is CI workflows,
+Dockerfiles, build/release tooling, dependency-update config or deploy config
+(the developer may not change those); such tickets are always flagged
+`security`. Otherwise `Builder: developer`.
 If a ticket needs a new dependency, a new module, a schema change, or touches
 shared code, write an ADR first:
 ```
