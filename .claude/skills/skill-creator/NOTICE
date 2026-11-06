@@ -1,0 +1,8 @@
+skill-creator
+Copyright Anthropic, PBC
+Source: https://github.com/anthropics/skills (commit ca45fc4)
+License: Apache License 2.0 (full text in LICENSE.txt)
+
+Modified by the agile-team-kit project: SKILL.md has an added "In this repo"
+note under its frontmatter saying when the kit uses the skill. No other file
+was changed.

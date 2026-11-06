@@ -7,7 +7,9 @@ only through an owner-merged PR.
 
 **Adoption rules**
 1. **Vendor, don't subscribe.** Copy the skill folder at a pinned commit, keeping
-   its LICENSE/NOTICE. No auto-updating plugins or marketplaces.
+   its LICENSE/NOTICE. No auto-updating plugins or marketplaces. The kit is
+   public: only redistributable licenses, and every vendored skill is listed in
+   `THIRD_PARTY_NOTICES.md`, with a NOTICE of our changes where the license asks.
 2. **Adapt rather than fight.** Where a skill clashes with CLAUDE.md or TEAM.md, add
    an "In this repo" note under its frontmatter (marked `adapted` below) and record
    it here. For sources with no license, write our own version instead of copying
@@ -67,7 +69,7 @@ only through an owner-merged PR.
 | verification-before-completion | superpowers | developer P, qa-engineer P, integrator P, devops-engineer P | vendored | 2026-11-04 |
 | systematic-debugging | superpowers | developer D | vendored | 2026-11-04 |
 | receiving-code-review | superpowers | developer P | vendored | 2026-11-04 |
-| writing-skills | superpowers | weekly skill-research run | adapted note | 2026-11-04 |
+| writing-skills | superpowers | weekly skill-research run | adapted note; copy of Anthropic's best-practices page removed and linked instead (not covered by MIT) | 2026-11-05 |
 | ponytail | ponytail | developer P, tech-lead D | adapted: lite level, CLAUDE.md comment rules win | 2026-11-04 |
 | ponytail-review | ponytail | code-reviewer P | adapted: reviewer's verdict format | 2026-11-04 |
 | verify-and-stop | caveman | qa-engineer P | vendored (trial) | 2026-11-04 |
@@ -124,6 +126,7 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
+| 2026-11-05 | public-release prep | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | pending | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
 | 2026-11-05 | devops round | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | pending | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |
 | 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | pending | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
 | 2026-11-05 | cc-safety-net hook | Owner chose to adopt cc-safety-net as a pinned hook | pending | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |

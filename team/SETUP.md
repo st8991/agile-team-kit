@@ -21,6 +21,9 @@ team/                     The team's shared memory — lives in git
   SKILL_RESEARCH_PROMPT.md  the text of the weekly skill-research task
 ```
 If the repo already has a CLAUDE.md, merge this one in rather than overwriting.
+Keep every LICENSE and NOTICE file in `.claude/skills/` and the kit's notices file:
+the vendored skills' licenses require them. The step-by-step guide for new
+adopters is `docs/GETTING_STARTED.md` in the kit's repo.
 
 ## One-time setup
 1. Copy the kit into the root of your repo, commit, and push to `main`.

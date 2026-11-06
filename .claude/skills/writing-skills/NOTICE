@@ -1,0 +1,10 @@
+writing-skills
+Copyright (c) 2025 Jesse Vincent
+Source: https://github.com/obra/superpowers (commit 22f0b46)
+License: MIT (full text in LICENSE)
+
+Changes by the agile-team-kit project:
+- Added the "In this repo" note under the frontmatter of SKILL.md.
+- Removed references/anthropic-best-practices.md, a copy of a page from
+  Anthropic's documentation that is not covered by the MIT grant, and pointed
+  SKILL.md at the page on platform.claude.com instead.
