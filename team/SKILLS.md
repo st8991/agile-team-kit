@@ -32,13 +32,14 @@ only through an owner-merged PR.
 | [obra/superpowers](https://github.com/obra/superpowers) | 22f0b46 | MIT |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 96608e0 | MIT |
 | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | 2e068f7 | Apache-2.0 (NOTICE kept) |
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | dd9a1b4 | MIT |
-| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 12af471 | MIT |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 4f2dbb6 (was dd9a1b4 until 2026-11-08) | MIT |
+| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 12af471 (held: v2.5 adds a Stop hook, see Watching) | MIT |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | 2c60614 | none declared, so ideas only |
 | [agamm/claude-code-owasp](https://github.com/agamm/claude-code-owasp) | 1ae29cb | MIT |
 | [trailofbits/skills](https://github.com/trailofbits/skills) | 470419e | CC-BY-SA-4.0 (adaptations stay CC-BY-SA; LICENSE kept per skill) |
 | [anthropics/defending-code-reference-harness](https://github.com/anthropics/defending-code-reference-harness) | d3bea6b | Apache-2.0, ideas only (repo unmaintained) |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 9654314 | MIT (repo LICENSE copied into each skill) |
+| [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | 1ecea19 | MIT |
 
 ## Skills
 
@@ -74,7 +75,7 @@ only through an owner-merged PR.
 | ponytail-review | ponytail | code-reviewer P | adapted: reviewer's verdict format | 2026-11-04 |
 | verify-and-stop | caveman | qa-engineer P | vendored (trial) | 2026-11-04 |
 | investigate-first | caveman | developer D | vendored (trial) | 2026-11-04 |
-| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: repo-root paths, output to UX.md | 2026-11-04 |
+| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: repo-root paths (upstream's `${CLAUDE_PLUGIN_ROOT}` prefix removed again on every re-pin), output to UX.md | 2026-11-08 (re-pinned to 4f2dbb6) |
 | design-taste-frontend | taste-skill | ux-designer D, developer D | adapted: public pages only | 2026-11-04 |
 | owasp-security | claude-code-owasp | security-engineer P | adapted: output in the verdict block | 2026-11-04 |
 | agentic-actions-auditor | trailofbits | security-engineer D | adapted: local checkout only (`gh api` denied) | 2026-11-04 |
@@ -84,6 +85,7 @@ only through an owner-merged PR.
 | diagnose-ci-gate | awesome-copilot | devops-engineer D, integrator D | adapted: base branch is develop, no test quarantine (hard rule), scratchpad worktree, works without `gh run` | 2026-11-05 |
 | github-actions-efficiency | awesome-copilot | devops-engineer D | adapted: required checks never dropped, output to team/DEVOPS.md and Findings | 2026-11-05 |
 | multi-stage-dockerfile | awesome-copilot | devops-engineer D | adapted: digest-pinned base images, container runtime needs an ADR | 2026-11-05 |
+| i-have-adhd | i-have-adhd | reporter, read by path at the start of every task (user-invoked skill) | adapted: reader is the owner skimming the daily report, persistence section off, reporter template and 300-word limit win; plugin hooks, evals and `agents/` files not copied | 2026-11-08 |
 | shipping-and-launch | addyosmani | devops-engineer D | adapted: production is always owner-approved, TEAM.md DoD wins; shared references copied in | 2026-11-05 |
 
 ## Guards (hooks, not skills)
@@ -98,6 +100,9 @@ Upgrades follow the same rule as skills: change the version and checksum in the 
 
 | Repo | Why not yet | Revisit when |
 |---|---|---|
+| Leonxlnx/taste-skill 2.5 (re-pin of design-taste-frontend) | v2.5.1 adds a frontmatter `Stop` hook that runs `node scripts/gate.mjs` on every stop and searches `$HOME` and plugin roots for it, plus ~1,600 changed files of Node 22 + Chrome tooling; fails our no-hooks rule | The hook becomes opt-in, or we vendor SKILL.md and references without the hook and scripts after a security-engineer review |
+| blader/humanizer | Good prose pass for owner-facing writing (MIT, 66k stars), but it is built on Wikipedia's "Signs of AI writing" (CC BY-SA) and the run could not reach Wikipedia to check no text was copied | A provenance check finds no copied passages: then product-manager D for product-sync and sprint-review files |
+| K-Dense-AI/scientific-agent-skills (uncertainty-and-units, statistical-analysis, statistical-power) | Careful MIT skills, local scripts only, but physics/lab focused with pinned scientific Python stacks; our data-scientist needs golden-data and metric checks for software products | A product computes physical quantities or runs experiments with significance tests |
 | JuliusBrussee/caveman (CLI, proxy, Auto) | Rewires agents, sends telemetry by default, needs a vendor account | Telemetry becomes opt-in and runs without an account |
 | Graphify-Labs/graphify | Code graph pays off only on large codebases; 1.6k open issues | A product repo passes ~50k lines |
 | obra/superpowers (whole plugin) | Waits on a human, nests subagents, logo telemetry | Never as a whole; keep cherry-picking |
@@ -126,10 +131,11 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
-| 2026-11-05 | public-release prep | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | pending | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
-| 2026-11-05 | devops round | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | pending | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |
-| 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | pending | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
-| 2026-11-05 | cc-safety-net hook | Owner chose to adopt cc-safety-net as a pinned hook | pending | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |
+| 2026-11-08 | first weekly run | Added i-have-adhd for the reporter (read by path); re-pinned ui-ux-pro-max to 4f2dbb6; held design-taste-frontend at 12af471 because v2.5 ships a Stop hook; humanizer deferred on provenance | pending | Re-pins can bring hooks in frontmatter: diff the frontmatter, not just the body. Upstream also rewrote our repo-root paths, so re-apply path fixes after every copy |
+| 2026-11-05 | public-release prep (#8) | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | merged unedited | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
+| 2026-11-05 | devops round (#7) | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | merged unedited | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |
+| 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | merged unedited | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
+| 2026-11-05 | cc-safety-net hook (#5) | Owner chose to adopt cc-safety-net as a pinned hook | merged unedited | Hooks are pinned by checksum in a wrapper, not run with `npx @latest` |
 | 2026-11-04 | security round (#4) | Owner-requested review of 10 security repos: 3 skills vendored (owasp-security, agentic-actions-auditor, property-based-testing) + own threat-modeling; security-engineer preload switched to owasp-security | merged unedited | Security tools need a behaviour check beyond the license: 4 of 10 install hooks, binaries or network calls |
 | 2026-11-04 | #1, #2 | Initial evaluation; 30 skills vendored + team-coding-principles | merged unedited | Owner wants the research applied to the kit, not just reported: include, cherry-pick bundles, rewrite unlicensed ideas |
 
@@ -138,6 +144,6 @@ Feedback from projects that use the kit arrives as GitHub issues labelled
 
 ## Gaps to research
 - data-scientist: golden-data and model-evaluation skills (property-based-testing now covers part of numerical validation).
-- project-manager: estimation and capacity-planning skills.
-- reporter: concise status-report writing.
+- project-manager: estimation and capacity-planning skills (2026-11-08: only repos under 10 stars found, none maintained).
+- reporter: covered by i-have-adhd (2026-11-08); revisit humanizer for prose once its provenance is checked.
 - devops-engineer: a non-interactive workflow linter skill (actionlint + zizmor at pinned versions) once a validator installs by checksum.

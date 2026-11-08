@@ -24,9 +24,10 @@ otherwise upstream's text.
 | chief-of-staff, diagnosing-bugs, domain-modeling, grill-with-docs, grilling, improve-codebase-architecture, retro, to-spec, to-tickets | Matt Pocock | [mattpocock/skills](https://github.com/mattpocock/skills) @4ae2317 |
 | receiving-code-review, systematic-debugging, verification-before-completion, writing-skills | Jesse Vincent | [obra/superpowers](https://github.com/obra/superpowers) @22f0b46 |
 | ponytail, ponytail-review | DietrichGebert | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) @96608e0 |
-| ui-ux-pro-max | Next Level Builder | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) @dd9a1b4 |
+| ui-ux-pro-max | Next Level Builder | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) @4f2dbb6 |
 | design-taste-frontend | Leonxlnx | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) @12af471 |
 | owasp-security | agamm (the upstream LICENSE names no holder; see the skill's NOTICE) | [agamm/claude-code-owasp](https://github.com/agamm/claude-code-owasp) @1ae29cb |
+| i-have-adhd | Ayoub Ghriss | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) @1ecea19 |
 | diagnose-ci-gate, github-actions-efficiency, github-actions-hardening, multi-stage-dockerfile | GitHub, Inc. | [github/awesome-copilot](https://github.com/github/awesome-copilot) @9654314 |
 
 `writing-skills`: upstream ships `references/anthropic-best-practices.md`, a copy
