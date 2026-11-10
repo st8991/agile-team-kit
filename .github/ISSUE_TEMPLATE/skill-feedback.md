@@ -4,7 +4,7 @@ about: A vendored skill helped or got in the way on your project
 labels: skill-feedback
 ---
 
-**Skill:** <!-- folder name under .claude/skills/ -->
+**Skill:** <!-- folder name under skills/ -->
 
 **Which agent used it, on what kind of ticket:**
 

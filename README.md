@@ -1,26 +1,82 @@
-# agile-team-kit
+# development-company
 
-A drop-in kit that turns your GitHub repo into one built by an **autonomous agile
-team of Claude Code agents**, once a day, under rules you control.
+A Claude Code plugin that gives your GitHub repo an **autonomous agile team of
+Claude agents**. Type `/development-company` and the team runs a sprint day: grooming, story
+points, planning, design review, building, code review, QA, merging to `develop`,
+and retrospectives. Run it by hand or once a day on a schedule.
 
 You are the Product Owner. You write the vision, talk to the team through an inbox
-file, read one short report a day, and merge one pull request. The team does the
-rest: grooming, story points, sprint planning, design review, building, code
-review, QA, merging to `develop`, and retrospectives. Nothing reaches `main`
-without you.
+file, read one short report a day, and merge one pull request. Nothing reaches
+`main` without you.
 
-> **Status:** early. It has run on one real project so far, and the process changes as
-> retros find friction. Expect the files to move between versions.
+> **Status:** early (0.x). It has run on one real project so far, and the process
+> changes as retros find friction.
+
+## Quick start
+
+You need [Claude Code](https://code.claude.com/docs), a GitHub repo for your app,
+`git`, the `gh` CLI signed in, and node 22+, `npm` and `openssl` (for the safety
+hook).
+
+**Install it once, on your Claude account** (claude.ai or the Claude desktop app):
+**Customize → Plugins → Add → Add marketplace**, enter `st8991/agile-team-kit`,
+then add the **Development Company** plugin. It then follows your account into the
+desktop app and Claude Code.
+
+**Or install it in Claude Code only**, from a terminal session:
+
+```
+/plugin marketplace add st8991/agile-team-kit
+/plugin install development-company@development-company
+```
+
+Then open your app's repo in Claude Code (terminal, IDE or the desktop app's Code
+tab) and type:
+
+```
+/development-company
+```
+
+The first `/development-company` sets the repo up: it copies the team's files in without
+overwriting yours, asks you about the product, and commits on a branch when you
+say so. After that, `/development-company` runs the daily sprint.
+
+Then protect `main` on GitHub (require a pull request before merging). **Read
+[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** before your first run.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `/development-company` | Sets the repo up the first time, then runs the daily sprint |
+| `/development-company setup` | Copies the team files into this repo and fills in the product with you |
+| `/development-company run` | Runs one sprint day as Scrum Master |
+| `/development-company sync` | Live product sync with the product manager (no build work) |
+| `/development-company status` | Board, blockers and "Needs you" items, without spawning agents |
+| `/development-company schedule` | Sets up the daily scheduled run |
+| `/development-company templates` | After a plugin update, shows what changed in the process templates |
+
+If another command already uses the name, type `/development-company:development-company`.
+
+## Where it runs
+
+| Where | Works? |
+|---|---|
+| Claude Code: terminal, IDE, desktop app's Code tab | Yes, the supported way. The team needs a git repo, `gh` and a shell |
+| Cowork | Agents and hooks load there; untested so far |
+| claude.ai chat | No. Chat loads skills but not agents or hooks, and has no repo to work on. `/development-company` says so and stops; the individual skills (TDD, code review, OWASP and so on) still work on their own |
+
 
 ## Why use it
 
 - **Controlled, not hands-off.** `main` is yours. Agents work on `develop` and
   ticket branches, and every ticket goes through code review, the flagged
   specialist reviews and QA before the integrator merges it.
-- **Guardrails in config, not just prompts.** `.claude/settings.json` denies
-  force-pushes, pushes to `main`, branch deletion, PR merges and `.env` reads.
-  A pinned [cc-safety-net](https://github.com/kenryu42/cc-safety-net) hook
-  blocks destructive shell commands before they run.
+- **Guardrails in config, not just prompts.** Setup writes a project
+  `.claude/settings.json` that denies force-pushes, pushes to `main`, branch
+  deletion, PR merges and `.env` reads. A pinned, checksum-verified
+  [cc-safety-net](https://github.com/kenryu42/cc-safety-net) hook blocks
+  destructive shell commands before they run.
 - **Safe against usage cut-offs.** Team state is checkpointed to a `team-state`
   branch after every ticket, so a run that stops mid-way loses one ticket at most.
 - **Real agile, sized for agents.** Five-run sprints, Fibonacci points,
@@ -29,28 +85,7 @@ without you.
 - **Pay only for what a ticket needs.** Security, UX, data and DevOps
   specialists run only on tickets the tech lead flags.
 
-## Quick start
-
-You need [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), a
-GitHub repo for your app, `git`, the `gh` CLI signed in, and node 22+, `npm` and
-`openssl` (for the safety hook).
-
-```bash
-# from the root of your app's repo
-git clone --depth 1 https://github.com/st8991/agile-team-kit /tmp/agile-team-kit
-cp -r /tmp/agile-team-kit/{.claude,.cc-safety-net,team,CLAUDE.md} .
-cp /tmp/agile-team-kit/THIRD_PARTY_NOTICES.md ./AGILE_TEAM_KIT_NOTICES.md
-```
-
-Then fill in `CLAUDE.md` and `team/PRODUCT.md`, add a first request to
-`team/INBOX.md`, protect `main`, and run `Run the daily sprint` in Claude Code.
-
-**Read [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** before your first
-run. It covers merging with an existing `CLAUDE.md`, fitting the allow list to
-your stack, supervising the first week, scheduling the daily run and what it
-costs.
-
-## The team (`.claude/agents/`)
+## The team (`agents/`)
 
 | Agent | Job |
 |---|---|
@@ -69,6 +104,8 @@ costs.
 | data-scientist | Formula and model specs, numerical-correctness gate on flagged tickets |
 | devops-engineer | Builds CI/CD, Dockerfile and deploy tickets; pipeline gate; triages red CI |
 
+In a session they appear as `development-company:<role>`.
+
 ## How a day works
 
 ```
@@ -78,38 +115,37 @@ recover → standup → owner input (grooming) → plan → build loop → wrap
                                        → QA → integrator merges to develop
 ```
 
-The full process, roles and git rules are in [`team/TEAM.md`](team/TEAM.md).
-Your daily ten minutes: read the newest file in `team/reports/`, answer in
-`team/INBOX.md`, and merge the `develop → main` PR when you're happy.
+The full process, roles and git rules are in
+[`team/TEAM.md`](skills/development-company/templates/project/team/TEAM.md), which setup
+copies into your repo so you and the retro can tune it per project.
 
-## Skills (`.claude/skills/`)
+## What lives where
+
+| In the plugin (updates with the plugin) | In your repo (yours, changes every run) |
+|---|---|
+| `agents/`: the 13 specialists | `team/`: process, backlog, sprint board, reports, retros |
+| `skills/`: the `/development-company` command and 42 team skills | `CLAUDE.md`: product rules and the code-quality standard |
+| `hooks/` + `scripts/`: the safety hook | `.claude/settings.json`: enables the plugin; permissions |
+| `skills/development-company/templates/`: what setup copies | `.cc-safety-net/`: the hook's policy and team rules |
+
+The safety hook only acts in repos that `/development-company setup` initialised (they have
+`.cc-safety-net/` or `team/TEAM.md`); it does nothing in your other projects.
+
+## Skills
 
 Each agent preloads a few skills and can load others on demand. Most are copied
-at a pinned commit from community repos (Addy Osmani, Matt Pocock, obra/superpowers,
-Anthropic, Trail of Bits, GitHub and others), plus two of our own.
-[`team/SKILLS.md`](team/SKILLS.md) lists each skill's source, pin, license, roles
-and our changes. A weekly research routine
-([`team/SKILL_RESEARCH_PROMPT.md`](team/SKILL_RESEARCH_PROMPT.md)) proposes
-changes to the kit as a PR; nothing changes until a maintainer merges it.
-
-## What's in the repo
-
-| Path | What it is | Copy into your project? |
-|---|---|---|
-| `CLAUDE.md` | Product rules and the code-quality standard; imports `team/TEAM.md` | Yes (merge if you have one) |
-| `.claude/` | Agents, skills, settings, safety hook | Yes |
-| `.cc-safety-net/` | The hook's policy and the team's extra rules | Yes |
-| `team/` | The team's process and shared memory (templates) | Yes |
-| `THIRD_PARTY_NOTICES.md` | Licenses of the vendored skills | Yes, under any name |
-| `docs/` | Getting-started guide and the kit's own skill research | No |
-| `README.md`, `CONTRIBUTING.md`, `LICENSE`, `.github/` | About the kit itself | No |
+at a pinned commit from community repos (Addy Osmani, Matt Pocock,
+obra/superpowers, Anthropic, Trail of Bits, GitHub and others), plus two of our
+own. [`SKILLS.md`](SKILLS.md) lists each skill's source, pin, license, roles and
+our changes. A weekly research routine
+([`maintainers/SKILL_RESEARCH_PROMPT.md`](maintainers/SKILL_RESEARCH_PROMPT.md))
+proposes changes as a PR; nothing changes until a maintainer merges it.
 
 ## License
 
-The kit is under the [MIT License](LICENSE). The vendored skills in
-`.claude/skills/` keep their own licenses (MIT, Apache-2.0 and, for two Trail of
-Bits skills, CC BY-SA 4.0); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-Keep each skill's `LICENSE` and `NOTICE` files when you copy it.
+The plugin's own files are under the [MIT License](LICENSE). The vendored skills
+in `skills/` keep their own licenses (MIT, Apache-2.0 and, for two Trail of Bits
+skills, CC BY-SA 4.0); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 This project is not affiliated with or endorsed by Anthropic. Claude and Claude
 Code are trademarks of Anthropic.

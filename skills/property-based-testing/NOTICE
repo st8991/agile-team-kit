@@ -1,0 +1,10 @@
+property-based-testing
+Original work: "property-based-testing" by Trail of Bits
+Source: https://github.com/trailofbits/skills (commit 470419e)
+License: Creative Commons Attribution-ShareAlike 4.0 International
+         (https://creativecommons.org/licenses/by-sa/4.0/; full text in LICENSE)
+
+Changes: the development-company project (github.com/st8991/agile-team-kit) added the "In this repo" note under the
+frontmatter of SKILL.md (when to load it, who chooses the library, seeded
+generators). The rest of the text is unchanged. This adaptation is licensed
+under CC BY-SA 4.0. No warranties are given.

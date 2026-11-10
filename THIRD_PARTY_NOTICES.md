@@ -1,16 +1,16 @@
 # Third-party notices
 
-The kit's own files (agents, `team/`, `CLAUDE.md`, docs, the hook wrapper and the
-two own-rewrite skills) are under the MIT License in [`LICENSE`](LICENSE).
+The plugin's own files (agents, the `/development-company` skill and its templates, docs,
+the hook wrapper and the two own-rewrite skills) are under the MIT License in [`LICENSE`](LICENSE).
 
-Most folders in `.claude/skills/` are copied from other people's repositories.
+Most folders in `skills/` are copied from other people's repositories.
 **Each of those keeps its own license**, which sits in the skill's folder as
 `LICENSE` or `LICENSE.txt`, sometimes with a `NOTICE`. The repo's MIT License
-does not replace them. When you copy the kit into your project, copy those files
-with the skills.
+does not replace them. If you redistribute a skill outside this plugin, copy those
+files with it.
 
 Pinned commits, roles and the full list of our changes are in
-[`team/SKILLS.md`](team/SKILLS.md). "Changed" below means we added an
+[`SKILLS.md`](SKILLS.md). "Changed" below means we added an
 "In this repo" note under the skill's frontmatter or removed a file; the body is
 otherwise upstream's text.
 
@@ -54,10 +54,10 @@ contains no images; it stores URLs and photographer names.
 
 These two adaptations stay under CC BY-SA 4.0 (see each skill's `LICENSE` and
 `NOTICE`). If you change them further, your version must stay under CC BY-SA 4.0
-too. ShareAlike applies only to these two folders, not to the rest of the kit or
+too. ShareAlike applies only to these two folders, not to the rest of the plugin or
 to the code your team writes.
 
-## Own work under the kit's MIT License
+## Own work under the plugin's MIT License
 
 | Skill | Note |
 |---|---|
@@ -68,4 +68,4 @@ to the code your team writes.
 
 | Tool | License | How |
 |---|---|---|
-| [cc-safety-net](https://github.com/kenryu42/cc-safety-net) 2.7.3 | MIT | `.claude/hooks/cc-safety-net.sh` fetches the npm package once per machine and checks its sha512. The kit ships only its own wrapper and rule files. |
+| [cc-safety-net](https://github.com/kenryu42/cc-safety-net) 2.7.3 | MIT | `scripts/cc-safety-net.sh` fetches the npm package once per machine and checks its sha512. The plugin ships only its own wrapper and rule files. |

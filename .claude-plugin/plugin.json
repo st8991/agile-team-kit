@@ -1,0 +1,11 @@
+{
+  "name": "development-company",
+  "displayName": "Development Company",
+  "version": "0.1.0",
+  "description": "An autonomous agile team of Claude Code agents (scrum master, product, tech lead, developers, reviewers, QA, security, UX, data, DevOps) that builds your repo one sprint at a time. Run /development-company.",
+  "author": { "name": "st8991", "url": "https://github.com/st8991" },
+  "homepage": "https://github.com/st8991/agile-team-kit",
+  "repository": "https://github.com/st8991/agile-team-kit",
+  "license": "MIT",
+  "keywords": ["agile", "scrum", "multi-agent", "orchestration", "sprint", "code-review", "qa"]
+}
