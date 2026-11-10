@@ -4,10 +4,10 @@ This guide takes you from an empty or existing app repo to the team's first
 supervised sprint. Plan on about an hour for setup and a week of watching before
 you leave it to run on a schedule.
 
-[`team/SETUP.md`](../team/SETUP.md) is the short reference that travels with the
-kit into your repo. This page is the longer walk-through for first-time adopters.
+`team/SETUP.md`, which setup copies into your repo, is the short reference. This
+page is the longer walk-through for first-time adopters.
 
-## 1. Is this kit for you?
+## 1. Is this for you?
 
 It fits when:
 - You have a product idea or an app you want to grow ticket by ticket, and you
@@ -17,8 +17,8 @@ It fits when:
   Each ticket spawns a developer plus at least a reviewer and QA.
 
 It doesn't fit when you want one-off edits (use Claude Code directly), or when no
-human will review the daily `develop → main` PR. The kit's safety comes from
-you holding `main`.
+human will review the daily `develop → main` PR. Its safety comes from you
+holding `main`.
 
 ## 2. Prerequisites
 
@@ -30,36 +30,50 @@ you holding `main`.
 | node 22+, npm, openssl | The safety hook installs a pinned, checksum-verified copy of cc-safety-net once per machine. Without them, shell commands are blocked |
 | Your stack's toolchain | Whatever builds, lints and tests your app |
 
-## 3. Install
+## 3. Install and set up
 
-From the root of your app's repo:
+Install the plugin one of two ways:
 
-```bash
-git clone --depth 1 https://github.com/st8991/agile-team-kit /tmp/agile-team-kit
-cp -r /tmp/agile-team-kit/{.claude,.cc-safety-net,team} .
-cp /tmp/agile-team-kit/THIRD_PARTY_NOTICES.md ./AGILE_TEAM_KIT_NOTICES.md
-# CLAUDE.md: copy it if you have none, otherwise merge by hand (see below)
-[ -f CLAUDE.md ] || cp /tmp/agile-team-kit/CLAUDE.md .
+- **On your Claude account** (recommended if you use the desktop app or cloud
+  sessions): in claude.ai or the desktop app, go to **Customize → Plugins → Add →
+  Add marketplace**, enter `st8991/agile-team-kit`, and add **Development
+  Company**. It syncs to Claude Code the next time you start a session.
+- **In Claude Code only**:
+  ```
+  /plugin marketplace add st8991/agile-team-kit
+  /plugin install development-company@development-company
+  ```
+  When it asks for a scope, **project** is the tidy choice: the team's 42 skills
+  then only load in this repo. User scope works too.
+
+The safety hook stays inactive in repos that weren't set up. Then, in Claude Code
+at the root of your app's repo:
+
+```
+/development-company setup
 ```
 
-Don't copy the kit's `README.md`, `LICENSE`, `CONTRIBUTING.md`, `docs/` or
-`.github/`; those describe the kit, not your app. Do keep every `LICENSE`,
-`LICENSE.txt` and `NOTICE` inside `.claude/skills/`, and the notices file. That
-is what the skills' licenses ask of you.
+Setup copies `CLAUDE.md`, `.claude/settings.json`, `.cc-safety-net/` and `team/`
+into your repo. It never overwrites:
+- **`CLAUDE.md` exists:** your content stays, and the team's "Code quality
+  standard", "Team skills" and "How work happens here" sections (with the
+  `@team/TEAM.md` import) are added.
+- **`.claude/settings.json` exists:** the `allow` and `deny` lists are merged,
+  the plugin is enabled, and your other keys stay.
+- **Any other file exists:** it's skipped and listed.
 
-**Already have a `CLAUDE.md` or `.claude/settings.json`?** Merge rather than
-overwrite:
-- `CLAUDE.md`: keep your content, then add the kit's "Code quality standard",
-  "Team skills" and "How work happens here" sections, including the
-  `@team/TEAM.md` import line.
-- `.claude/settings.json`: add the kit's `allow` and `deny` entries and its
-  `PreToolUse` hook to yours. Keep every `deny` entry.
-- `.claude/agents/` or `.claude/skills/` with the same names as the kit's: rename
-  yours, or the kit's versions will replace them.
+The project's `.claude/settings.json` declares this marketplace and enables the
+plugin, so collaborators who open the repo in Claude Code are offered it (they
+trust the marketplace and install it once). Cloud sessions ignore plugins that a
+repo enables; there the plugin comes from your Claude account.
 
-Commit and push to `main`.
+The vendored skills stay inside the plugin, so you don't copy any license or
+notice files into your repo.
 
 ## 4. Tell the team about your product
+
+Setup asks you these questions and writes the answers in; this is where they
+end up if you'd rather edit by hand.
 
 1. **`CLAUDE.md`**: replace `<Project name>`, then fill in "Decisions already
    made" (stack, hosting, anything the team must not change without asking) and
@@ -78,7 +92,7 @@ first run from what your repo actually uses.
 `.claude/settings.json` allows git, `gh pr`, and common npm, pnpm, pytest and uv
 commands. Add your own build, test and lint commands to `allow`, for example
 `"Bash(cargo test:*)"` or `"Bash(go test:*)"`. Agents can't edit this file, so
-you make every change to it.
+you make every change to it. Setup offers to add the commands it finds.
 
 Optional: for the devops-engineer's CI checks, allow
 `"Bash(gh run list:*)"`, `"Bash(gh run view:*)"` and `"Bash(gh pr checks:*)"`.
@@ -94,10 +108,10 @@ the settings and the hook.
 
 ## 7. First run, supervised
 
-Open Claude Code at the repo root and type:
+Merge the setup PR, open Claude Code at the repo root, and type:
 
 ```
-Run the daily sprint
+/development-company
 ```
 
 On the first run the scrum master creates `develop` and `team-state`, the
@@ -106,9 +120,9 @@ writes `team/CONVENTIONS.md`, and the project manager plans sprint 1. Sprint 1
 is usually the foundation: build, lint and test commands, and CI.
 
 Watch the first few runs. Things to tune:
-- **Too slow or too much usage:** lower the default lanes to 1 in
-  `.claude/agents/project-manager.md`, and switch developer, reviewer and QA to
-  `model: haiku` in their frontmatter.
+- **Too slow or too much usage:** in `team/CONVENTIONS.md` under "Team
+  settings", set max lanes to 1 and add model overrides such as
+  `developer=haiku, code-reviewer=haiku, qa-engineer=haiku`.
 - **Stories too vague:** write more in `team/PRODUCT.md`.
 - **A command keeps getting blocked:** add it to `allow` in `.claude/settings.json`.
 - **"Blocked by CC Safety Net":** the hook judged the command destructive. Look
@@ -127,30 +141,31 @@ direction at any time, write it in the inbox.
 
 ## 9. Put it on a schedule
 
-Once a few supervised runs look right, schedule the daily run with the text in
-[`team/DAILY_PROMPT.md`](../team/DAILY_PROMPT.md), replacing `<OWNER>/<REPO>`.
-The easiest way is to ask Claude Code to create a daily scheduled task for your
-repo with that prompt. Any scheduler that can start a Claude Code session in a
-fresh clone of the repo works too.
+Once a few supervised runs look right, run `/development-company schedule`. It fills in
+[`team/DAILY_PROMPT.md`](../skills/development-company/templates/project/team/DAILY_PROMPT.md)
+for your repo and, where Claude Code can create scheduled tasks, offers to make
+one. Any scheduler that can start a Claude Code session in a fresh clone of the
+repo works too, as long as that environment can install the plugin.
 
 Pick a time when you won't be using Claude yourself, so the run doesn't compete
 with you for usage.
 
-## 10. Keeping the kit up to date
+## 10. Updating
 
-The kit changes as retros find friction. To update a project:
-1. Diff the new kit against your copy, starting with `team/TEAM.md`,
-   `.claude/agents/` and `.claude/skills/`.
-2. Take process and agent changes as a normal PR to your `main`.
-3. Don't overwrite your `team/` state files (BACKLOG, SPRINT, INBOX, STANDUPS,
-   FINDINGS, DECISIONS, CONVENTIONS, reports, retros).
+Agents, skills and the hook update with the plugin (`/plugin` → update). The
+plugin's version is pinned, so nothing changes until a new release and your
+update.
 
-Found something that should change in the kit itself? Open an issue here; see
+Your `team/` files don't change on update: they are the team's memory, and the
+retro edits the process on purpose. Run `/development-company templates` to see what the
+newer templates changed and pick what to take, as a PR to your `main`.
+
+Found something that should change in the plugin itself? Open an issue here; see
 [CONTRIBUTING.md](../CONTRIBUTING.md).
 
-## Removing the kit
+## Removing it
 
-Delete `.claude/agents/`, `.claude/skills/` (or only the kit's skills),
-`.claude/hooks/cc-safety-net.sh`, `.cc-safety-net/`, the hook and kit entries in
-`.claude/settings.json`, the kit sections of `CLAUDE.md`, and `team/`. Delete the
-daily scheduled task. Your `develop` branch and history stay as they are.
+Uninstall the plugin (`/plugin`), then delete `.cc-safety-net/`, the
+`development-company` entries and any permissions you don't want in
+`.claude/settings.json`, the team sections of `CLAUDE.md`, and `team/`. Delete
+the daily scheduled task. Your `develop` branch and history stay as they are.

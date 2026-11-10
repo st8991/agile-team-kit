@@ -1,6 +1,6 @@
 ---
 name: Process or guardrail problem
-about: An agent, the daily loop or a guardrail didn't behave as the kit says
+about: An agent, the daily loop or a guardrail didn't behave as the plugin says
 ---
 
 **What the team did:**

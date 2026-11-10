@@ -1,7 +1,7 @@
 # Contributing
 
-Thanks for helping improve the kit. It gets better from real use, so reports from
-projects that run it are the most valuable thing you can send.
+Thanks for helping improve development-company. It gets better from real use, so reports
+from projects that run it are the most valuable thing you can send.
 
 ## Ways to help
 
@@ -18,14 +18,14 @@ projects that run it are the most valuable thing you can send.
 
 ## What a good change looks like
 
-The kit is prompts and process, so a change is judged by how agents and adopters
+The plugin is prompts and process, so a change is judged by how agents and adopters
 will read it:
 
-- **One source of truth per rule.** The process lives in `team/TEAM.md`; an
-  agent file says how that role does its part. Don't restate a rule in two
+- **One source of truth per rule.** The process lives in
+  `skills/development-company/templates/project/team/TEAM.md`; an agent file says how that role does its part. Don't restate a rule in two
   places; point to it.
-- **Keep the guardrails.** No change may weaken the `deny` list in
-  `.claude/settings.json`, the safety hook, the "nobody pushes to `main`" rule or
+- **Keep the guardrails.** No change may weaken the `deny` list in the
+  settings template, the safety hook, the "nobody pushes to `main`" rule or
   the review and QA gates. Proposals to change them need a clear reason and will
   get a careful review.
 - **One level of delegation.** Agents never spawn agents; the scrum master does.
@@ -33,14 +33,15 @@ will read it:
   interactive belongs in a live session (like the product sync), and questions
   for the owner go to "Needs you".
 - **Plain words.** Short sentences, full words, no jargon a new adopter must
-  decode. Templates in `team/` stay templates: no project data.
-- **Test it.** Run at least one `Run the daily sprint` session on a scratch repo
-  with your change, and say in the PR what you saw.
+  decode. Templates under `skills/development-company/templates/` stay templates: no project data.
+- **Test it.** Load your checkout with `claude --plugin-dir .`, run
+  `/development-company setup` and `/development-company` on a scratch repo with your change, run
+  `claude plugin validate .`, and say in the PR what you saw.
 
 ## Vendored skills
 
-Skills in `.claude/skills/` change only through the process in
-[`team/SKILLS.md`](team/SKILLS.md):
+Skills in `skills/` change only through the process in
+[`SKILLS.md`](SKILLS.md):
 
 - Copy a skill at a pinned commit, never a branch, and keep its `LICENSE` and
   any `NOTICE` in the folder.
@@ -50,7 +51,7 @@ Skills in `.claude/skills/` change only through the process in
 - Record any change as an "In this repo" note under the frontmatter, and add a
   `NOTICE` that states your changes when the license requires it (Apache-2.0,
   CC BY-SA).
-- Update the registry in `team/SKILLS.md` and the table in
+- Update the registry in `SKILLS.md` and the table in
   `THIRD_PARTY_NOTICES.md` in the same PR.
 - Say in the PR what the skill can do on a machine: scripts, network calls,
   hooks, telemetry. Skills that install binaries with `curl | bash`, phone home,
@@ -60,9 +61,10 @@ Skills in `.claude/skills/` change only through the process in
 
 - [ ] The PR says what changed, why, and what you tested.
 - [ ] No secrets, tokens, personal data or details from your own project.
-- [ ] `team/` files are still generic templates.
+- [ ] Template files are still generic.
+- [ ] `claude plugin validate .` passes; the version in `.claude-plugin/plugin.json` is bumped.
 - [ ] New or changed skills: registry and notices updated, license allows it.
-- [ ] Docs updated (`README.md`, `docs/GETTING_STARTED.md`, `team/SETUP.md`) if
+- [ ] Docs updated (`README.md`, `docs/GETTING_STARTED.md`, the `team/SETUP.md` template) if
       adopters need to do something differently.
 
 ## License of contributions

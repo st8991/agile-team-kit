@@ -1,8 +1,0 @@
-{
-  "version": 1,
-  "safety": { "level": "strict", "overrides": {} },
-  "workflow": { "worktree_mode": false },
-  "destructive_command_protection": { "enabled": true, "overrides": { "git.merge-abort": "off" }, "allow_paths": [] },
-  "secret_protection": { "enabled": true, "overrides": {}, "deny_paths": [], "allow_paths": [] },
-  "audit": { "retention_days": 30 }
-}

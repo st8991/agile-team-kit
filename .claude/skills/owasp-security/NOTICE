@@ -1,7 +1,0 @@
-owasp-security
-Original work from https://github.com/agamm/claude-code-owasp (commit 1ae29cb),
-by agamm and contributors. The upstream LICENSE (MIT) names no copyright holder;
-it is kept here unchanged.
-
-Changes: the agile-team-kit project added the "In this repo" note under the
-frontmatter of SKILL.md (where findings go, what to read first).

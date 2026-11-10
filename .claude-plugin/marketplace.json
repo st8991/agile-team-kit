@@ -1,0 +1,12 @@
+{
+  "name": "development-company",
+  "owner": { "name": "st8991", "url": "https://github.com/st8991" },
+  "description": "The development-company plugin: an autonomous agile team for Claude Code.",
+  "plugins": [
+    {
+      "name": "development-company",
+      "source": "./",
+      "description": "An autonomous agile team of Claude Code agents that builds your repo one sprint at a time. Run /development-company."
+    }
+  ]
+}
