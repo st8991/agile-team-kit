@@ -87,6 +87,8 @@ plugin version bump.
 | github-actions-efficiency | awesome-copilot | devops-engineer D | adapted: required checks never dropped, output to team/DEVOPS.md and Findings | 2026-11-05 |
 | multi-stage-dockerfile | awesome-copilot | devops-engineer D | adapted: digest-pinned base images, container runtime needs an ADR | 2026-11-05 |
 | i-have-adhd | i-have-adhd | reporter, read by path at the start of every task (user-invoked skill) | adapted: reader is the owner skimming the daily report, persistence section off, reporter template and 300-word limit win; plugin hooks, evals and `agents/` files not copied | 2026-11-08 |
+| ux-laws-and-motion | own, after Thomas & Johnston's animation principles and published UX laws | ux-designer P, developer D, qa-engineer D | own rewrite: list of 20 suggested by a chart the owner shared, no text copied | 2026-11-15 |
+| unslop-ui | own | ux-designer P, developer D | own rewrite: list of 20 suggested by a chart the owner shared, no text copied; defers to design-taste-frontend on public-page art direction | 2026-11-15 |
 | shipping-and-launch | addyosmani | devops-engineer D | adapted: production is always owner-approved, TEAM.md DoD wins; shared references copied in | 2026-11-05 |
 
 ## Guards (hooks, not skills)
@@ -132,6 +134,7 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
+| 2026-11-15 | UX principles round | Owner-requested: own skills ux-laws-and-motion and unslop-ui (40 principles from two charts the owner shared), preloaded on ux-designer, on demand for developer and qa-engineer; UX.md template gains Motion and Interaction | pending | When the owner shares a list from social media, write original guidance with an apply step and a check per item rather than copying the list |
 | 2026-11-08 | first weekly run | Added i-have-adhd for the reporter (read by path); re-pinned ui-ux-pro-max to 4f2dbb6; held design-taste-frontend at 12af471 because v2.5 ships a Stop hook; humanizer deferred on provenance | pending | Re-pins can bring hooks in frontmatter: diff the frontmatter, not just the body. Upstream also rewrote our repo-root paths, so re-apply path fixes after every copy |
 | 2026-11-05 | public-release prep (#8) | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | merged unedited | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
 | 2026-11-05 | devops round (#7) | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | merged unedited | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |

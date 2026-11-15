@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 · 2026-11-15
+
+- Two new team skills, written by us: `ux-laws-and-motion` (twelve animation
+  principles for UI motion plus eight UX laws: Fitts, hit areas, Hick, Miller,
+  Doherty, Postel, Jakob, frequency of use) and `unslop-ui` (twenty fixes that
+  stop interfaces looking AI-generated). Every principle has how to apply it and
+  a check, with the failures that block a review marked.
+- ux-designer preloads both and uses them for UX criteria, specs and its branch
+  review. Developers load them on UX-flagged tickets; QA loads
+  `ux-laws-and-motion` to check target sizes and loading feedback.
+- `team/UX.md` template gains Motion and Interaction sections. Run
+  `/development-company templates` to see the change in an existing project.
+
 ## 0.1.0 · 2026-11-08
 
 First release as a Claude plugin. Until now this repo was a kit you copied into
