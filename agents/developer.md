@@ -66,6 +66,7 @@ The team's skills ship with the development-company plugin in `${CLAUDE_PLUGIN_R
 
 **Load with the Skill tool when needed:**
 - `systematic-debugging`: when a test fails or a bug's cause isn't obvious.
+- `modernize`: when your ticket comes back with `CONFLICT` (or BROKE_DEVELOP `bug`) to be brought up to date with develop: decide MODERNIZE, REWORK or CLOSE first, then merge `origin/develop` into the branch (never rebase and force-push).
 - `investigate-first`: when a failure is ambiguous or intermittent, before you edit anything.
 - `mcp-builder`: when the design note says the ticket builds an MCP server.
 - `ux-laws-and-motion`: when the ticket is flagged `Specialists: ux` and adds an interaction or animation: use its motion defaults and Apply lines where the UX spec is silent.

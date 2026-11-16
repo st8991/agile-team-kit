@@ -12,6 +12,8 @@
   `ux-laws-and-motion` to check target sizes and loading feedback.
 - `team/UX.md` template gains Motion and Interaction sections. Run
   `/development-company templates` to see the change in an existing project.
+- Includes 0.1.1, the 2026-11-15 weekly skill update: `modernize` for the
+  developer, six addyosmani skills and ui-ux-pro-max re-pinned.
 
 ## 0.1.0 · 2026-11-08
 

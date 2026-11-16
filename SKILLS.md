@@ -27,13 +27,13 @@ plugin version bump.
 
 | Source | Pinned commit | License |
 |---|---|---|
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 301b02b | MIT |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 39b723c (was 301b02b until 2026-11-15) | MIT |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | 4ae2317 | MIT |
 | [anthropics/skills](https://github.com/anthropics/skills) | ca45fc4 | Apache-2.0 (per skill LICENSE.txt) |
 | [obra/superpowers](https://github.com/obra/superpowers) | 22f0b46 | MIT |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 96608e0 | MIT |
 | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | 2e068f7 | Apache-2.0 (NOTICE kept) |
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 4f2dbb6 (was dd9a1b4 until 2026-11-08) | MIT |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | efd9822 (was 4f2dbb6 until 2026-11-15) | MIT |
 | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 12af471 (held: v2.5 adds a Stop hook, see Watching) | MIT |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | 2c60614 | none declared, so ideas only |
 | [agamm/claude-code-owasp](https://github.com/agamm/claude-code-owasp) | 1ae29cb | MIT |
@@ -41,18 +41,19 @@ plugin version bump.
 | [anthropics/defending-code-reference-harness](https://github.com/anthropics/defending-code-reference-harness) | d3bea6b | Apache-2.0, ideas only (repo unmaintained) |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 9654314 | MIT (repo LICENSE copied into each skill) |
 | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | 1ecea19 | MIT |
+| [t3dotgg/tstack](https://github.com/t3dotgg/tstack) | 11e37a7 | MIT |
 
 ## Skills
 
 | Skill | Source | Roles (P = preloaded, D = on demand) | Changes | Reviewed |
 |---|---|---|---|---|
 | team-coding-principles | own, inspired by karpathy | developer P, code-reviewer P, tech-lead P, product-manager P | own rewrite | 2026-11-04 |
-| spec-driven-development | addyosmani | product-manager P | vendored | 2026-11-04 |
-| planning-and-task-breakdown | addyosmani | project-manager P | shared reference copied in | 2026-11-04 |
-| test-driven-development | addyosmani | developer P | shared reference copied in | 2026-11-04 |
-| code-review-and-quality | addyosmani | code-reviewer P | shared references copied in | 2026-11-04 |
-| security-and-hardening | addyosmani | security-engineer D (was P until 2026-11-04) | shared reference copied in | 2026-11-04 |
-| documentation-and-adrs | addyosmani | tech-lead P | vendored | 2026-11-04 |
+| spec-driven-development | addyosmani | product-manager P | adapted: owner is away during runs, so open questions go to BACKLOG.md "Questions for owner" and the story is `Needs-info`; deferred items become stories; `/build` ignored | 2026-11-15 (re-pinned to 39b723c: V1 scoping and delta specs) |
+| planning-and-task-breakdown | addyosmani | project-manager P | shared reference copied in | 2026-11-15 (re-pinned) |
+| test-driven-development | addyosmani | developer P | shared reference copied in | 2026-11-15 (re-pinned) |
+| code-review-and-quality | addyosmani | code-reviewer P | shared references copied in | 2026-11-15 (re-pinned; OWASP 2025 numbering) |
+| security-and-hardening | addyosmani | security-engineer D (was P until 2026-11-04) | shared reference copied in; hardening-patterns.md links fixed to the copied checklist | 2026-11-15 (re-pinned; OWASP 2025 numbering) |
+| documentation-and-adrs | addyosmani | tech-lead P | vendored | 2026-11-15 (re-pinned: documentation-drift check) |
 | api-and-interface-design | addyosmani | tech-lead D | vendored | 2026-11-04 |
 | browser-testing-with-devtools | addyosmani | qa-engineer D | vendored | 2026-11-04 |
 | ci-cd-and-automation | addyosmani | devops-engineer P (was integrator D until 2026-11-05) | vendored | 2026-11-04 |
@@ -70,13 +71,14 @@ plugin version bump.
 | mcp-builder | anthropics | developer D | vendored | 2026-11-04 |
 | verification-before-completion | superpowers | developer P, qa-engineer P, integrator P, devops-engineer P | vendored | 2026-11-04 |
 | systematic-debugging | superpowers | developer D | vendored | 2026-11-04 |
+| modernize | tstack | developer D | adapted: base is develop, merge `origin/develop` instead of rebase + force-push, REWORK/CLOSE only recommended, no PR comments; `agents/openai.yaml` not copied | 2026-11-15 |
 | receiving-code-review | superpowers | developer P | vendored | 2026-11-04 |
 | writing-skills | superpowers | weekly skill-research run | adapted note; copy of Anthropic's best-practices page removed and linked instead (not covered by MIT) | 2026-11-05 |
 | ponytail | ponytail | developer P, tech-lead D | adapted: lite level, CLAUDE.md comment rules win | 2026-11-04 |
 | ponytail-review | ponytail | code-reviewer P | adapted: reviewer's verdict format | 2026-11-04 |
 | verify-and-stop | caveman | qa-engineer P | vendored (trial) | 2026-11-04 |
 | investigate-first | caveman | developer D | vendored (trial) | 2026-11-04 |
-| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: script paths point into the plugin (`${CLAUDE_PLUGIN_ROOT}`), output to UX.md | 2026-11-08 (re-pinned to 4f2dbb6) |
+| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: script paths point into the plugin (`${CLAUDE_PLUGIN_ROOT}`), output to UX.md | 2026-11-15 (re-pinned to efd9822: `--preview` writes a static preview.html; note says no `--persist`, previews go to team/ux/) |
 | design-taste-frontend | taste-skill | ux-designer D, developer D | adapted: public pages only | 2026-11-04 |
 | owasp-security | claude-code-owasp | security-engineer P | adapted: output in the verdict block | 2026-11-04 |
 | agentic-actions-auditor | trailofbits | security-engineer D | adapted: local checkout only (`gh api` denied) | 2026-11-04 |
@@ -125,6 +127,9 @@ Upgrades follow the same rule as skills: change the version and checksum in the 
 | mattpocock setup-pre-commit | Husky + Prettier only (Node), installs packages | A tech-lead ADR picks a Node stack and wants commit hooks |
 | addyosmani git-workflow-and-versioning, observability-and-instrumentation | Trunk-based advice conflicts with the develop/main model; observability needs a running service | Observability: the product has a deployed service |
 | ahmedasmar/devops-claude-skills, harness/harness-skills, microsoft/skills | No license (ahmedasmar); vendor platforms (Harness, Azure) | Never, unless the product adopts that platform |
+| t3dotgg/tstack (rest: babysit-pr, file-pr, leaving-pr-comments, takeover, full-send, council, sol-loop) | Built for a human driving PRs on GitHub with `gh`; the team merges locally into develop and never comments on PRs. `takeover`'s credit-preserving handoff is good | A lane picks up another agent's abandoned branch often enough to need a method |
+| pbakaus/impeccable | Strong design vocabulary (Apache-2.0, 110k stars), but one topic per role: ux-designer already has ui-ux-pro-max, design-taste-frontend and the own UX skills; its `live` mode drives a browser with bundled scripts | The own UX skills prove too thin in UX gate reviews |
+| openqodex/openqodex | Pre-push review that runs scanners through `npx -y openqodex@0.18.0`, installs into `~/.openqodex/`, ships a push hook and starts its own reviewer process; duplicates our review chain | Never as a whole; revisit if the devops-engineer wants a pinned scanner bundle |
 | tanviet12/vbsec | Prompts mostly in Vietnamese, overlaps owasp-security; optional auto-fix rewrites source and `--sca` goes online | Never; owasp-security covers it |
 
 ## Learning log
@@ -135,7 +140,9 @@ kinds of changes the owner accepts, edits or rejects.
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
 | 2026-11-15 | UX principles round | Owner-requested: own skills ux-laws-and-motion and unslop-ui (40 principles from two charts the owner shared), preloaded on ux-designer, on demand for developer and qa-engineer; UX.md template gains Motion and Interaction | pending | When the owner shares a list from social media, write original guidance with an apply step and a check per item rather than copying the list |
-| 2026-11-08 | first weekly run | Added i-have-adhd for the reporter (read by path); re-pinned ui-ux-pro-max to 4f2dbb6; held design-taste-frontend at 12af471 because v2.5 ships a Stop hook; humanizer deferred on provenance | pending | Re-pins can bring hooks in frontmatter: diff the frontmatter, not just the body. Upstream also rewrote our repo-root paths, so re-apply path fixes after every copy |
+| 2026-11-15 | weekly run | Added modernize (tstack) for the developer on CONFLICT bounce-backs; re-pinned 6 addyosmani skills to 39b723c (spec evolution, doc drift, OWASP 2025) and gave spec-driven-development an owner-away note; re-pinned ui-ux-pro-max to efd9822 (`--preview`) | pending | A re-pin can expose an old clash: spec-driven-development's "ask the human" gates needed an unattended-run note once upstream added more of them. Our registry prompt moved to maintainers/ in #10; the routine's stored prompt still names team/ |
+| 2026-11-10 | plugin conversion (#10) | Owner-requested: the kit became the development-company plugin; skills moved to `skills/`, registry to the repo root, prompt to maintainers/ | merged unedited | Paths change with packaging: re-check `${CLAUDE_PLUGIN_ROOT}` paths and file locations after a restructure |
+| 2026-11-08 | first weekly run (#9) | Added i-have-adhd for the reporter (read by path); re-pinned ui-ux-pro-max to 4f2dbb6; held design-taste-frontend at 12af471 because v2.5 ships a Stop hook; humanizer deferred on provenance | merged unedited 2026-11-10; the two "Needs you" questions (humanizer, taste-skill 2.5) got no answer, so both stay as they were | Re-pins can bring hooks in frontmatter: diff the frontmatter, not just the body. Upstream also rewrote our repo-root paths, so re-apply path fixes after every copy |
 | 2026-11-05 | public-release prep (#8) | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | merged unedited | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
 | 2026-11-05 | devops round (#7) | Owner-requested: 16 DevOps/CI repos reviewed; new devops-engineer agent (builds CI tickets, pipeline gate, red-CI triage, day-3 CI health); 4 awesome-copilot skills + addyosmani shipping-and-launch vendored; ci-cd-and-automation moved from integrator to devops-engineer; integrator and security-engineer share diagnose-ci-gate and github-actions-hardening on demand | merged unedited | DevOps skill repos are mostly broad bundles with installers or wizards; small, single-purpose, non-interactive skills from a well-run source fit an unattended team best |
 | 2026-11-05 | chief-of-staff + ceo (#6) | Owner-requested: new ceo agent (strategy, environment improvements, tie-breaks) with mattpocock's beta chief-of-staff at the existing 4ae2317 pin; `agents/openai.yaml` dropped. First draft gave it to the Scrum Master; owner redirected it to a new CEO role | merged unedited | An orchestration skill can go to a subagent if its delegation becomes directives the main session carries out |
@@ -147,7 +154,7 @@ Feedback from projects that use the plugin arrives as GitHub issues labelled
 `skill-feedback`. Requests for specific repos to look at come as `skill-request`.
 
 ## Gaps to research
-- data-scientist: golden-data and model-evaluation skills (property-based-testing now covers part of numerical validation).
+- data-scientist: golden-data and model-evaluation skills (property-based-testing now covers part of numerical validation). 2026-11-15: only LLM/RAG eval skills in large aggregator bundles found, none fit product metrics.
 - project-manager: estimation and capacity-planning skills (2026-11-08: only repos under 10 stars found, none maintained).
-- reporter: covered by i-have-adhd (2026-11-08); revisit humanizer for prose once its provenance is checked.
+- reporter: covered by i-have-adhd (2026-11-08); revisit humanizer for prose once its provenance is checked (2026-11-15: Wikipedia still blocked from the run; needs the owner's call).
 - devops-engineer: a non-interactive workflow linter skill (actionlint + zizmor at pinned versions) once a validator installs by checksum.
