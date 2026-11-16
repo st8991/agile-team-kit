@@ -51,5 +51,6 @@ The team's skills ship with the development-company plugin in `${CLAUDE_PLUGIN_R
 
 **Load with the Skill tool when needed:**
 - `webapp-testing`: when the ticket changes a web UI: drive it with Playwright.
+- `ux-laws-and-motion`: when the ticket is flagged `Specialists: ux`: check target sizes at 375 px (#14) and that every async action shows a pending state under a throttled network (#17).
 - `browser-testing-with-devtools`: when checking console errors, network calls or performance in a browser.
 - `diagnosing-bugs`: when a failure needs a reproduction loop before you can report it.
