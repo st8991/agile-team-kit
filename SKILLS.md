@@ -27,21 +27,22 @@ plugin version bump.
 
 | Source | Pinned commit | License |
 |---|---|---|
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 39b723c (was 301b02b until 2026-11-15) | MIT |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 8c99fa3 (was 39b723c until 2026-11-22) | MIT |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | 4ae2317 | MIT |
 | [anthropics/skills](https://github.com/anthropics/skills) | ca45fc4 | Apache-2.0 (per skill LICENSE.txt) |
 | [obra/superpowers](https://github.com/obra/superpowers) | 22f0b46 | MIT |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 96608e0 | MIT |
 | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | 2e068f7 | Apache-2.0 (NOTICE kept) |
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | efd9822 (was 4f2dbb6 until 2026-11-15) | MIT |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 6ec2bb5 (was efd9822 until 2026-11-22) | MIT |
 | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | 12af471 (held: v2.5 adds a Stop hook, see Watching) | MIT |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | 2c60614 | none declared, so ideas only |
 | [agamm/claude-code-owasp](https://github.com/agamm/claude-code-owasp) | 1ae29cb | MIT |
-| [trailofbits/skills](https://github.com/trailofbits/skills) | 470419e | CC-BY-SA-4.0 (adaptations stay CC-BY-SA; LICENSE kept per skill) |
+| [trailofbits/skills](https://github.com/trailofbits/skills) | 149d7b2 (was 470419e until 2026-11-22; vendored skills unchanged) | CC-BY-SA-4.0 (adaptations stay CC-BY-SA; LICENSE kept per skill) |
 | [anthropics/defending-code-reference-harness](https://github.com/anthropics/defending-code-reference-harness) | d3bea6b | Apache-2.0, ideas only (repo unmaintained) |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 9654314 | MIT (repo LICENSE copied into each skill) |
 | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | 1ecea19 | MIT |
 | [t3dotgg/tstack](https://github.com/t3dotgg/tstack) | 11e37a7 | MIT |
+| [MedAdemBHA/mythical-agent-month](https://github.com/MedAdemBHA/mythical-agent-month) | b60165f | MIT |
 
 ## Skills
 
@@ -78,7 +79,7 @@ plugin version bump.
 | ponytail-review | ponytail | code-reviewer P | adapted: reviewer's verdict format | 2026-11-04 |
 | verify-and-stop | caveman | qa-engineer P | vendored (trial) | 2026-11-04 |
 | investigate-first | caveman | developer D | vendored (trial) | 2026-11-04 |
-| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: script paths point into the plugin (`${CLAUDE_PLUGIN_ROOT}`), output to UX.md | 2026-11-15 (re-pinned to efd9822: `--preview` writes a static preview.html; note says no `--persist`, previews go to team/ux/) |
+| ui-ux-pro-max | ui-ux-pro-max | ux-designer D | adapted: script paths point into the plugin (`${CLAUDE_PLUGIN_ROOT}`), output to UX.md | 2026-11-22 (re-pinned to 6ec2bb5: 21 form error-handling rules, map guidance, `--tokens dtcg\|css`; note says paste `--tokens css` into team/UX.md) |
 | design-taste-frontend | taste-skill | ux-designer D, developer D | adapted: public pages only | 2026-11-04 |
 | owasp-security | claude-code-owasp | security-engineer P | adapted: output in the verdict block | 2026-11-04 |
 | agentic-actions-auditor | trailofbits | security-engineer D | adapted: local checkout only (`gh api` denied) | 2026-11-04 |
@@ -89,7 +90,10 @@ plugin version bump.
 | github-actions-efficiency | awesome-copilot | devops-engineer D | adapted: required checks never dropped, output to team/DEVOPS.md and Findings | 2026-11-05 |
 | multi-stage-dockerfile | awesome-copilot | devops-engineer D | adapted: digest-pinned base images, container runtime needs an ADR | 2026-11-05 |
 | i-have-adhd | i-have-adhd | reporter, read by path at the start of every task (user-invoked skill) | adapted: reader is the owner skimming the daily report, persistence section off, reporter template and 300-word limit win; plugin hooks, evals and `agents/` files not copied | 2026-11-08 |
-| shipping-and-launch | addyosmani | devops-engineer D | adapted: production is always owner-approved, TEAM.md DoD wins; shared references copied in | 2026-11-05 |
+| shipping-and-launch | addyosmani | devops-engineer D | adapted: production is always owner-approved, TEAM.md DoD wins; shared references copied in | 2026-11-22 (shared accessibility checklist refreshed to WCAG 2.2) |
+| accessibility-engineering | addyosmani | qa-engineer D | adapted: audit only (violations become FAIL lines, the developer fixes), pinned npx tools or `not run`, screen-reader passes recorded as manual; script and checklist paths point into the plugin | 2026-11-22 |
+| cvss-scoring | trailofbits | security-engineer D | adapted: vector + calculator link in the verdict and team/SECURITY.md, `[ASSUMED]` instead of questions, triage rubric still sets the verdict | 2026-11-22 |
+| mythical-agent-month | mythical-agent-month | project-manager D | adapted: Mode B beside story points, lanes from SPRINT.md/CONVENTIONS.md, decisions to BACKLOG.md, calibrate from the board; `calibrate.py` (reads `~/.claude` transcripts) and `assets/` not copied | 2026-11-22 |
 
 ## Guards (hooks, not skills)
 
@@ -109,7 +113,7 @@ Upgrades follow the same rule as skills: change the version and checksum in the 
 | JuliusBrussee/caveman (CLI, proxy, Auto) | Rewires agents, sends telemetry by default, needs a vendor account | Telemetry becomes opt-in and runs without an account |
 | Graphify-Labs/graphify | Code graph pays off only on large codebases; 1.6k open issues | A product repo passes ~50k lines |
 | obra/superpowers (whole plugin) | Waits on a human, nests subagents, logo telemetry | Never as a whole; keep cherry-picking |
-| anthropics/skills docx/pdf/pptx/xlsx | Proprietary license; Claude Code has equivalents | A report needs a file format |
+| anthropics/skills docx/pdf/pptx/xlsx | Moved to Apache-2.0 on 2026-11-16 (#2146), so the license no longer blocks it; still no role needs Office files | A report needs a file format |
 | cloudflare/security-audit-skill | Best full-audit method seen, but full mode fans out subagents and writes to `~/security-audit-skill/`; guidance mode overlaps owasp-security | The team adds a periodic full-audit lane the scrum master orchestrates |
 | AgriciDaniel/pya | Strong read-only audit, but the orchestrator spawns 9 agents; overlaps owasp-security | Same as cloudflare; its `references/agentic-security.md` could feed our skill-review checklist |
 | trailofbits/skills (rest) | `supply-chain-risk-auditor` calls OSV, deps.dev, npm, PyPI and GitHub; `insecure-defaults`, `differential-review`, `sharp-edges`, `fp-check` overlap owasp-security or need subagents | A day-3 audit needs more than `npm audit`/`pip-audit`, or owasp-security misses a class in practice |
@@ -128,6 +132,9 @@ Upgrades follow the same rule as skills: change the version and checksum in the 
 | t3dotgg/tstack (rest: babysit-pr, file-pr, leaving-pr-comments, takeover, full-send, council, sol-loop) | Built for a human driving PRs on GitHub with `gh`; the team merges locally into develop and never comments on PRs. `takeover`'s credit-preserving handoff is good | A lane picks up another agent's abandoned branch often enough to need a method |
 | pbakaus/impeccable | Strong design vocabulary (Apache-2.0, 110k stars), but one topic per role: ux-designer already has ui-ux-pro-max, design-taste-frontend and the own UX skills; its `live` mode drives a browser with bundled scripts | The own UX skills prove too thin in UX gate reviews |
 | openqodex/openqodex | Pre-push review that runs scanners through `npx -y openqodex@0.18.0`, installs into `~/.openqodex/`, ships a push hook and starts its own reviewer process; duplicates our review chain | Never as a whole; revisit if the devops-engineer wants a pinned scanner bundle |
+| google/elephant-goldfish-model (egm-review, egm-drift-report) | Fresh-context "goldfish" design review (Apache-2.0, Google, 22k stars), but every review spawns reviewer subagents from the skill (nesting) and waits for the user to approve; drift report overlaps documentation-and-adrs | The scrum master gets a design-review step it orchestrates itself: then an own rewrite of the goldfish idea for the tech-lead |
+| github/awesome-copilot skill-distribution-audit | Checks a skill collection's release (missing, leaked, duplicate skills) with a small Node helper; useful for maintaining this plugin, not for a team role | `claude plugin validate .` misses a packaging error in a weekly PR |
+| trailofbits/skills taint-trace (Trailmark) | Needs the Trailmark analyzer installed; overlaps owasp-security's data-flow pass | A product grows a parser or interpreter where taint tracking pays off |
 | tanviet12/vbsec | Prompts mostly in Vietnamese, overlaps owasp-security; optional auto-fix rewrites source and `--sca` goes online | Never; owasp-security covers it |
 
 ## Learning log
@@ -137,7 +144,8 @@ kinds of changes the owner accepts, edits or rejects.
 
 | Week | PR | Added / changed / removed | Outcome (merged, edited, rejected) | Lesson |
 |---|---|---|---|---|
-| 2026-11-15 | weekly run | Added modernize (tstack) for the developer on CONFLICT bounce-backs; re-pinned 6 addyosmani skills to 39b723c (spec evolution, doc drift, OWASP 2025) and gave spec-driven-development an owner-away note; re-pinned ui-ux-pro-max to efd9822 (`--preview`) | pending | A re-pin can expose an old clash: spec-driven-development's "ask the human" gates needed an unattended-run note once upstream added more of them. Our registry prompt moved to maintainers/ in #10; the routine's stored prompt still names team/ |
+| 2026-11-22 | weekly run | Added accessibility-engineering (qa-engineer D), cvss-scoring (security-engineer D), mythical-agent-month (project-manager D, fills a gap); re-pinned ui-ux-pro-max to 6ec2bb5 (form-error rules, design tokens); addyosmani to 8c99fa3 and trailofbits to 149d7b2 with no change to our skills except the shared a11y checklist | pending | New skills in sources we already pin (addyosmani, trailofbits) are the cheapest safe adds: same license and review history. A gap-filler from a young repo can still be vendored when it is local-only, pinned and on demand; drop the parts that read outside the project (calibrate.py reads `~/.claude`) |
+| 2026-11-15 | weekly run (#12) | Added modernize (tstack) for the developer on CONFLICT bounce-backs; re-pinned 6 addyosmani skills to 39b723c (spec evolution, doc drift, OWASP 2025) and gave spec-driven-development an owner-away note; re-pinned ui-ux-pro-max to efd9822 (`--preview`) | merged unedited 2026-11-15 | A re-pin can expose an old clash: spec-driven-development's "ask the human" gates needed an unattended-run note once upstream added more of them. Our registry prompt moved to maintainers/ in #10; the routine's stored prompt still names team/ |
 | 2026-11-10 | plugin conversion (#10) | Owner-requested: the kit became the development-company plugin; skills moved to `skills/`, registry to the repo root, prompt to maintainers/ | merged unedited | Paths change with packaging: re-check `${CLAUDE_PLUGIN_ROOT}` paths and file locations after a restructure |
 | 2026-11-08 | first weekly run (#9) | Added i-have-adhd for the reporter (read by path); re-pinned ui-ux-pro-max to 4f2dbb6; held design-taste-frontend at 12af471 because v2.5 ships a Stop hook; humanizer deferred on provenance | merged unedited 2026-11-10; the two "Needs you" questions (humanizer, taste-skill 2.5) got no answer, so both stay as they were | Re-pins can bring hooks in frontmatter: diff the frontmatter, not just the body. Upstream also rewrote our repo-root paths, so re-apply path fixes after every copy |
 | 2026-11-05 | public-release prep (#8) | Owner-requested license audit before going public: NOTICE files added for the CC BY-SA, modified Apache and holder-less MIT skills; writing-skills' copy of an Anthropic docs page removed; THIRD_PARTY_NOTICES.md added | merged unedited | Check that every copied file is the source's to license, not just that the repo has a LICENSE: bundles sometimes include third-party docs |
@@ -152,6 +160,6 @@ Feedback from projects that use the plugin arrives as GitHub issues labelled
 
 ## Gaps to research
 - data-scientist: golden-data and model-evaluation skills (property-based-testing now covers part of numerical validation). 2026-11-15: only LLM/RAG eval skills in large aggregator bundles found, none fit product metrics.
-- project-manager: estimation and capacity-planning skills (2026-11-08: only repos under 10 stars found, none maintained).
+- project-manager: covered by mythical-agent-month (2026-11-22, on demand). It is young (one author, ~26 stars, defaults from one measured run), so watch whether its estimates beat story-point velocity; drop it if reports never use it.
 - reporter: covered by i-have-adhd (2026-11-08); revisit humanizer for prose once its provenance is checked (2026-11-15: Wikipedia still blocked from the run; needs the owner's call).
 - devops-engineer: a non-interactive workflow linter skill (actionlint + zizmor at pinned versions) once a validator installs by checksum.

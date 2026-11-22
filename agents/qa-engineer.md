@@ -53,3 +53,4 @@ The team's skills ship with the development-company plugin in `${CLAUDE_PLUGIN_R
 - `webapp-testing`: when the ticket changes a web UI: drive it with Playwright.
 - `browser-testing-with-devtools`: when checking console errors, network calls or performance in a browser.
 - `diagnosing-bugs`: when a failure needs a reproduction loop before you can report it.
+- `accessibility-engineering`: when a ticket changes a user-facing web UI and its criteria, team/UX.md or the UX gate call for an accessibility check (WCAG 2.2 AA audit; Serious or Critical violations fail the criterion).
