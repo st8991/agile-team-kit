@@ -95,5 +95,9 @@
       "Edit(./.claude/settings.json)",
       "Write(./.claude/settings.json)"
     ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }

@@ -55,12 +55,13 @@ the owner already has. The source is
    - `CLAUDE.md` exists → **merge, never overwrite.** Keep the owner's content.
      Append, in the template's order, each `##` section from the template that the
      owner's file lacks: `Decisions already made`, `Roadmap` and `Conventions`
-     (step 3 fills these), then `Code quality standard`, `Team skills` and `How
-     work happens here` with its `@team/TEAM.md` import. If the owner's file has
+     (step 3 fills these), then `Code quality standard`, `Team skills`, `Commit and
+     PR attribution` and `How work happens here` with its `@team/TEAM.md` import. If the owner's file has
      its own section with the same purpose, keep theirs and tell them.
    - `.claude/settings.json` exists → **merge the JSON.** Union the `allow` and
      `deny` lists, add `extraKnownMarketplaces.development-company` and
-     `enabledPlugins["development-company@development-company"]`, keep every other key the owner has
+     `enabledPlugins["development-company@development-company"]`, set `attribution` to
+     `{"commit": "", "pr": ""}` so commits and PRs carry no Claude attribution, keep every other key the owner has
      (their hooks, env, model). Never drop a `deny` entry.
    - Any other existing file → leave it and list it as skipped.
 3. **Fill in the product.** Ask the owner, one question at a time, and write the
