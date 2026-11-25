@@ -1,7 +1,7 @@
 # Setting up the autonomous agile team
 
 ## What's where
-The **development-company plugin** carries the team itself: 13 agents, 42 skills (each with
+The **development-company plugin** carries the team itself: 13 agents, 45 skills (each with
 its license), the `/development-company` command and the safety hook. Plugin updates bring
 new versions; the team never edits them.
 
