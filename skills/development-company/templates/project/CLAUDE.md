@@ -67,6 +67,10 @@ ones named in its prompt.
 - The team never adds, edits or updates skills or agents. New versions arrive as
   plugin updates the owner chooses to install.
 
+## Commit and PR attribution (owner-set)
+
+Never add a `Co-Authored-By` trailer, a `Claude-Session` line or a "Generated with Claude Code" line to commits or pull request descriptions. `.claude/settings.json` turns attribution off as well.
+
 ## How work happens here
 
 This repo is built by an autonomous agile team that runs every morning. The process,
