@@ -8,6 +8,14 @@ ux-designer fills this in before the first UI story starts.
 ## Required notices
 <!-- disclaimers or privacy notes that must be visible, and where -->
 ## Tokens
+<!-- colour (neutrals, one accent, semantic), type scale, spacing scale, radius,
+elevation levels (one shadow each), icon set. UI code uses these only (unslop-ui #5). -->
+## Motion
+<!-- personality (calm / playful), duration and easing tokens, what never animates.
+Defaults in the ux-laws-and-motion skill; prefers-reduced-motion always respected. -->
+## Interaction
+<!-- minimum target size (24 px, 44 px on touch), response-time budget (feedback
+< 100 ms, progress past 400 ms), keyboard shortcuts for frequent actions. -->
 ## Number and date formatting
 ## Component inventory
 ## Accessibility

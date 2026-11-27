@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.2.1 · 2026-11-22
+
+The 2026-11-22 weekly skill update, rebased onto 0.2.0.
+
+- New on-demand skills: `accessibility-engineering` (qa-engineer audits pages
+  against WCAG 2.2 with pinned axe-core and pa11y), `cvss-scoring`
+  (security-engineer adds a CVSS vector to findings) and `mythical-agent-month`
+  (project-manager estimates in agent time beside story points).
+- Re-pinned ui-ux-pro-max (form-error rules, design tokens), addyosmani and
+  trailofbits; the shared accessibility checklist now follows WCAG 2.2.
+
+## 0.2.0 · 2026-11-15
+
+- Two new team skills, written by us: `ux-laws-and-motion` (twelve animation
+  principles for UI motion plus eight UX laws: Fitts, hit areas, Hick, Miller,
+  Doherty, Postel, Jakob, frequency of use) and `unslop-ui` (twenty fixes that
+  stop interfaces looking AI-generated). Every principle has how to apply it and
+  a check, with the failures that block a review marked.
+- ux-designer preloads both and uses them for UX criteria, specs and its branch
+  review. Developers load them on UX-flagged tickets; QA loads
+  `ux-laws-and-motion` to check target sizes and loading feedback.
+- `team/UX.md` template gains Motion and Interaction sections. Run
+  `/development-company templates` to see the change in an existing project.
+- Includes 0.1.1, the 2026-11-15 weekly skill update: `modernize` for the
+  developer, six addyosmani skills and ui-ux-pro-max re-pinned.
+
 ## 0.1.0 · 2026-11-08
 
 First release as a Claude plugin. Until now this repo was a kit you copied into

@@ -124,7 +124,7 @@ copies into your repo so you and the retro can tune it per project.
 | In the plugin (updates with the plugin) | In your repo (yours, changes every run) |
 |---|---|
 | `agents/`: the 13 specialists | `team/`: process, backlog, sprint board, reports, retros |
-| `skills/`: the `/development-company` command and 42 team skills | `CLAUDE.md`: product rules and the code-quality standard |
+| `skills/`: the `/development-company` command and 48 team skills | `CLAUDE.md`: product rules and the code-quality standard |
 | `hooks/` + `scripts/`: the safety hook | `.claude/settings.json`: enables the plugin; permissions |
 | `skills/development-company/templates/`: what setup copies | `.cc-safety-net/`: the hook's policy and team rules |
 

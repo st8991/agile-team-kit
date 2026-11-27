@@ -69,5 +69,7 @@ The team's skills ship with the development-company plugin in `${CLAUDE_PLUGIN_R
 - `modernize`: when your ticket comes back with `CONFLICT` (or BROKE_DEVELOP `bug`) to be brought up to date with develop: decide MODERNIZE, REWORK or CLOSE first, then merge `origin/develop` into the branch (never rebase and force-push).
 - `investigate-first`: when a failure is ambiguous or intermittent, before you edit anything.
 - `mcp-builder`: when the design note says the ticket builds an MCP server.
+- `ux-laws-and-motion`: when the ticket is flagged `Specialists: ux` and adds an interaction or animation: use its motion defaults and Apply lines where the UX spec is silent.
+- `unslop-ui`: when the ticket is flagged `Specialists: ux`: run its Spot greps on your own diff and fix what they find before reporting DONE.
 - `design-taste-frontend`: when the ticket is a public-facing web page and the UX spec asks for it.
 - `property-based-testing`: when the design note or data spec names a property (roundtrip, invariant, oracle), or you are writing a parser, serializer or calculation and the project already has a PBT library.
