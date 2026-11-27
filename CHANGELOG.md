@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.1 · 2026-11-22
+
+The 2026-11-22 weekly skill update, rebased onto 0.2.0.
+
+- New on-demand skills: `accessibility-engineering` (qa-engineer audits pages
+  against WCAG 2.2 with pinned axe-core and pa11y), `cvss-scoring`
+  (security-engineer adds a CVSS vector to findings) and `mythical-agent-month`
+  (project-manager estimates in agent time beside story points).
+- Re-pinned ui-ux-pro-max (form-error rules, design tokens), addyosmani and
+  trailofbits; the shared accessibility checklist now follows WCAG 2.2.
+
 ## 0.2.0 · 2026-11-15
 
 - Two new team skills, written by us: `ux-laws-and-motion` (twelve animation

@@ -76,3 +76,4 @@ The team's skills ship with the development-company plugin in `${CLAUDE_PLUGIN_R
 
 **Load with the Skill tool when needed:**
 - `retro`: when writing the day-5 whole-team retro.
+- `mythical-agent-month`: when checking a day plan or sprint commitment against the usage budget, or when the owner or product-manager asks how long work will take (agent wall-clock, usage and owner-decision waits beside story points).
